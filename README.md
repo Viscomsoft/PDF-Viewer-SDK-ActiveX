@@ -23,12 +23,12 @@ programmatically.
 
 7. Support Get the default Printer Name.
 
-8.Support Print event, you will know how many pages printed and when is finished.
+8. Support Print event, you will know how many pages printed and when is finished.
 
-9.Support Rotate at specific degree of PDF. Support view Unicode content, including Chinese, Japanese, Arabic and Hebrew. Provide User Define Display Area. User Define Zoom in or Zoom out value.
+9. Support Rotate at specific degree of PDF. Support view Unicode content, including Chinese, Japanese, Arabic and Hebrew. Provide User Define Display Area. User Define Zoom in or Zoom out value.
 
-10.Include C#2019, C#2010, VB.NET 2019, VB.Net 2010, Visual Basic, Visual Basic Script (vbs), Visual C , Visual Foxpro, Delphi, Access, Web Page Sample Code.
+10. Include C#2019, C#2010, VB.NET 2019, VB.Net 2010, Visual Basic, Visual Basic Script (vbs), Visual C , Visual Foxpro, Delphi, Access, Web Page Sample Code.
 
-11.Compatible with any programming language that supports ActiveX (Access, Visual C , Visual Basic , Visual Foxpro, Delphi, .Net, etc.) 
+11. Compatible with any programming language that supports ActiveX (Access, Visual C , Visual Basic , Visual Foxpro, Delphi, .Net, etc.) 
 
 12. Royalty free distribution of the OCX file.
