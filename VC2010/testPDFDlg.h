@@ -56,4 +56,6 @@ public:
 	afx_msg void OnBnClickedRadio3();
 	afx_msg void OnBnClickedRadio4();
 	afx_msg void OnBnClickedRadio5();
+	CButton m_ChkBorder;
+	afx_msg void OnBnClickedCheckborder();
 };

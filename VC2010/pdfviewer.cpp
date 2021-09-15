@@ -99,6 +99,18 @@ void CPDFViewer::SetZoom(double propVal)
 	SetProperty(0x2a, VT_R8, propVal);
 }
 
+BOOL CPDFViewer::GetBorder()
+{
+	BOOL result;
+	GetProperty(0x2c, VT_BOOL, (void*)&result);
+	return result;
+}
+
+void CPDFViewer::SetBorder(BOOL propVal)
+{
+	SetProperty(0x2c, VT_BOOL, propVal);
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CPDFViewer operations
 
@@ -319,5 +331,15 @@ BOOL CPDFViewer::IsEncrypted()
 {
 	BOOL result;
 	InvokeHelper(0x2b, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
+	return result;
+}
+
+short CPDFViewer::UnicodeLoadPDFFile(BSTR* strPDFFile)
+{
+	short result;
+	static BYTE parms[] =
+		VTS_PBSTR;
+	InvokeHelper(0x2d, DISPATCH_METHOD, VT_I2, (void*)&result, parms,
+		strPDFFile);
 	return result;
 }

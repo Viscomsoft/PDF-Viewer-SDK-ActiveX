@@ -61,6 +61,7 @@ void CtestPDFDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_PDFVIEWERCTRL1, m_PDFViewer);
+	DDX_Control(pDX, IDC_CHECKBORDER, m_ChkBorder);
 }
 
 BEGIN_MESSAGE_MAP(CtestPDFDlg, CDialogEx)
@@ -87,6 +88,7 @@ BEGIN_MESSAGE_MAP(CtestPDFDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_RADIO3, &CtestPDFDlg::OnBnClickedRadio3)
 	ON_BN_CLICKED(IDC_RADIO4, &CtestPDFDlg::OnBnClickedRadio4)
 	ON_BN_CLICKED(IDC_RADIO5, &CtestPDFDlg::OnBnClickedRadio5)
+	ON_BN_CLICKED(IDC_CHECKBORDER, &CtestPDFDlg::OnBnClickedCheckborder)
 END_MESSAGE_MAP()
 
 
@@ -131,7 +133,7 @@ BOOL CtestPDFDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-	
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -453,4 +455,15 @@ void CtestPDFDlg::OnBnClickedRadio5()
 {
 	// TODO: Add your control notification handler code here
 	m_PDFViewer.SetRotateAngle(0);
+}
+
+
+void CtestPDFDlg::OnBnClickedCheckborder()
+{
+	// TODO: Add your control notification handler code here
+	if(m_ChkBorder.GetCheck()==1)
+		m_PDFViewer.SetBorder(TRUE);
+	else
+		m_PDFViewer.SetBorder(FALSE);
+
 }

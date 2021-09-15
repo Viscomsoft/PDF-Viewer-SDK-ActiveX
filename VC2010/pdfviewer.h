@@ -1,5 +1,5 @@
-#if !defined(AFX_PDFVIEWER_H__2AE5B712_268C_4366_A814_4840F82BC37F__INCLUDED_)
-#define AFX_PDFVIEWER_H__2AE5B712_268C_4366_A814_4840F82BC37F__INCLUDED_
+#if !defined(AFX_PDFVIEWER_H__5B419C18_9277_411D_8743_B126DFC40417__INCLUDED_)
+#define AFX_PDFVIEWER_H__5B419C18_9277_411D_8743_B126DFC40417__INCLUDED_
 
 #if _MSC_VER > 1000
 #pragma once
@@ -53,6 +53,8 @@ public:
 	void SetEnablePanning(BOOL);
 	double GetZoom();
 	void SetZoom(double);
+	BOOL GetBorder();
+	void SetBorder(BOOL);
 
 // Operations
 public:
@@ -86,9 +88,10 @@ public:
 	void FitWindow();
 	short SaveBitmapsBySize(LPCTSTR strSaveFileName, short iPageNo, double iScale);
 	BOOL IsEncrypted();
+	short UnicodeLoadPDFFile(BSTR* strPDFFile);
 };
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_PDFVIEWER_H__2AE5B712_268C_4366_A814_4840F82BC37F__INCLUDED_)
+#endif // !defined(AFX_PDFVIEWER_H__5B419C18_9277_411D_8743_B126DFC40417__INCLUDED_)
