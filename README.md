@@ -32,3 +32,7 @@ programmatically.
 11. Compatible with any programming language that supports ActiveX (Access, Visual C , Visual Basic , Visual Foxpro, Delphi, .Net, etc.) 
 
 12. Royalty free distribution of the OCX file.
+
+# How to Tutorials
+C# - How to Add Pdf Viewer to VS 2019 WinForm application from NuGet Packages http://www.viscomsoft.com/popular/pdfviewer/157.html
+
