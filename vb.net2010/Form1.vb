@@ -163,6 +163,12 @@
             cboprinter.SelectedIndex = 0
         End If
 
+        cboExportTextType.Items.Add("UTF8 Text File")
+        cboExportTextType.Items.Add("XML File")
+        cboExportTextType.Items.Add("HTML File")
+        cboExportTextType.SelectedIndex = 0
+
+
     End Sub
 
     Private Sub Button6_Click_2(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
@@ -249,5 +255,36 @@
 
     Private Sub Button16_Click(sender As System.Object, e As System.EventArgs) Handles Button16.Click
         AxPDFViewer1.Zoom = txtcustomzoom.Text
+    End Sub
+
+    Private Sub btnExportText_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExportText.Click
+        If cboExportTextType.SelectedIndex = 0 Then
+            SaveFileDialog1.Filter = "Text file (*.txt)|*.txt||"
+            SaveFileDialog1.DefaultExt = "txt"
+        ElseIf cboExportTextType.SelectedIndex = 1 Then
+            SaveFileDialog1.Filter = "XML file (*.xml)|*.xml||"
+            SaveFileDialog1.DefaultExt = "xml"
+        ElseIf cboExportTextType.SelectedIndex = 2 Then
+            SaveFileDialog1.Filter = "Html file (*.html)|*.html||"
+            SaveFileDialog1.DefaultExt = "html"
+
+        End If
+
+
+
+        If SaveFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
+
+            AxPDFViewer1.ExportText(SaveFileDialog1.FileName, TextBox1.Text, cboExportTextType.SelectedIndex)
+        End If
+
+    End Sub
+
+    Private Sub chkhighlightallmatch_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkhighlightallmatch.CheckedChanged
+        If chkhighlightallmatch.Checked Then
+            AxPDFViewer1.HighlightAllMatchedText = True
+        Else
+            AxPDFViewer1.HighlightAllMatchedText = False
+
+        End If
     End Sub
 End Class
