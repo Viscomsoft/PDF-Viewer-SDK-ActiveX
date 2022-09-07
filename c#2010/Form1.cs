@@ -180,7 +180,11 @@ namespace testPDF
             if(cboprinter.Items.Count > 0)
             cboprinter.SelectedIndex = 0;
         
-
+            
+        cboExportTextType.Items.Add("UTF8 Text File");
+        cboExportTextType.Items.Add("XML File");
+        cboExportTextType.Items.Add("HTML File");
+        cboExportTextType.SelectedIndex = 0;
         }
 
         private void button11_Click_1(object sender, EventArgs e)
@@ -269,6 +273,41 @@ namespace testPDF
         private void Button16_Click(object sender, EventArgs e)
         {
             axPDFViewer1.Zoom = double.Parse(txtcustomzoom.Text);
+        }
+
+        private void btnExportText_Click(object sender, EventArgs e)
+        {
+              if(cboExportTextType.SelectedIndex == 0)
+              {
+                  saveFileDialog1.Filter = "Text file (*.txt)|*.txt||";
+                 saveFileDialog1.DefaultExt = "txt";
+              }
+              else  if(cboExportTextType.SelectedIndex == 1)
+              {
+                    saveFileDialog1.Filter = "XML file (*.xml)|*.xml||";
+                     saveFileDialog1.DefaultExt = "xml";
+       
+              }
+              else if(cboExportTextType.SelectedIndex == 2)
+              {
+                    saveFileDialog1.Filter = "Html file (*.html)|*.html||";
+                    saveFileDialog1.DefaultExt = "html";
+
+              }
+
+              if (saveFileDialog1.ShowDialog() ==  System.Windows.Forms.DialogResult.OK)
+                  axPDFViewer1.ExportText(saveFileDialog1.FileName, (short)Convert.ToInt16(this.textBox2.Text), (short)cboExportTextType.SelectedIndex);
+  
+
+        }
+
+        private void chkhighlightallmatch_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkhighlightallmatch.Checked)
+                axPDFViewer1.HighlightAllMatchedText = true;
+            else
+                axPDFViewer1.HighlightAllMatchedText = false;
+         
         }
     }
 }
