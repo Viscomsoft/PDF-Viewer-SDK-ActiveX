@@ -55,6 +55,7 @@ CtestPDFDlg::CtestPDFDlg(CWnd* pParent /*=NULL*/)
 	, m_strSearchText(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_iExportTextPage = 1;
 }
 
 void CtestPDFDlg::DoDataExchange(CDataExchange* pDX)
@@ -62,6 +63,8 @@ void CtestPDFDlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_PDFVIEWERCTRL1, m_PDFViewer);
 	DDX_Control(pDX, IDC_CHECKBORDER, m_ChkBorder);
+	DDX_Control(pDX, IDC_CBOEXPORTTEXT, m_CboExportText);
+	DDX_Text(pDX, IDC_EDIT_EXPORTTEXT, m_iExportTextPage);
 }
 
 BEGIN_MESSAGE_MAP(CtestPDFDlg, CDialogEx)
@@ -89,6 +92,7 @@ BEGIN_MESSAGE_MAP(CtestPDFDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_RADIO4, &CtestPDFDlg::OnBnClickedRadio4)
 	ON_BN_CLICKED(IDC_RADIO5, &CtestPDFDlg::OnBnClickedRadio5)
 	ON_BN_CLICKED(IDC_CHECKBORDER, &CtestPDFDlg::OnBnClickedCheckborder)
+	ON_BN_CLICKED(IDC_BTNEXPORT, &CtestPDFDlg::OnBnClickedBtnexport)
 END_MESSAGE_MAP()
 
 
@@ -133,6 +137,10 @@ BOOL CtestPDFDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
+	this->m_CboExportText.AddString(L"UTF8 Text File");
+	this->m_CboExportText.AddString(L"XML File");
+	this->m_CboExportText.AddString(L"HTML File");
+	this->m_CboExportText.SetCurSel(0);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -466,4 +474,49 @@ void CtestPDFDlg::OnBnClickedCheckborder()
 	else
 		m_PDFViewer.SetBorder(FALSE);
 
+}
+
+
+void CtestPDFDlg::OnBnClickedBtnexport()
+{
+	// TODO: Add your control notification handler code here
+	CString strFilter;
+	CString strExt;
+	UpdateData(TRUE);
+	
+	if(this->m_CboExportText.GetCurSel()==0)
+	{
+		strFilter = _T("Text file (*.txt) | *.txt||");
+		strExt=".txt";
+		
+		
+	}
+	else if(this->m_CboExportText.GetCurSel()==1)
+	{
+		strFilter = _T("XML file (*.xml) | *.xml||");
+		strExt=".xml";
+	
+	}
+	else if(this->m_CboExportText.GetCurSel()==2)
+	{
+		strFilter = _T("HTML file (*.html) | *.html||");
+		strExt=".html";
+	}
+
+
+
+	CFileDialog dlg(FALSE,NULL,strExt,OFN_FILEMUSTEXIST,strFilter,this);
+	
+	if(this->m_CboExportText.GetCurSel()==0)
+		dlg.SetDefExt("txt");
+	else if(this->m_CboExportText.GetCurSel()==1)
+		dlg.SetDefExt("xml");
+	else if(this->m_CboExportText.GetCurSel()==2)
+		dlg.SetDefExt("html");
+
+	if(dlg.DoModal()==IDOK)
+	{
+		
+		m_PDFViewer.ExportText(dlg.GetPathName(),this->m_iExportTextPage,m_CboExportText.GetCurSel());
+	}
 }

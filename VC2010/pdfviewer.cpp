@@ -111,6 +111,18 @@ void CPDFViewer::SetBorder(BOOL propVal)
 	SetProperty(0x2c, VT_BOOL, propVal);
 }
 
+BOOL CPDFViewer::GetHighlightAllMatchedText()
+{
+	BOOL result;
+	GetProperty(0x31, VT_BOOL, (void*)&result);
+	return result;
+}
+
+void CPDFViewer::SetHighlightAllMatchedText(BOOL propVal)
+{
+	SetProperty(0x31, VT_BOOL, propVal);
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CPDFViewer operations
 
@@ -341,5 +353,31 @@ short CPDFViewer::UnicodeLoadPDFFile(BSTR* strPDFFile)
 		VTS_PBSTR;
 	InvokeHelper(0x2d, DISPATCH_METHOD, VT_I2, (void*)&result, parms,
 		strPDFFile);
+	return result;
+}
+
+void CPDFViewer::PrinterSetPageSize(short iPageSize)
+{
+	static BYTE parms[] =
+		VTS_I2;
+	InvokeHelper(0x2e, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
+		 iPageSize);
+}
+
+void CPDFViewer::PrinterSetPageSource(short iPageSource)
+{
+	static BYTE parms[] =
+		VTS_I2;
+	InvokeHelper(0x2f, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
+		 iPageSource);
+}
+
+BOOL CPDFViewer::ExportText(LPCTSTR strTextFileName, short iPage, short iOutputType)
+{
+	BOOL result;
+	static BYTE parms[] =
+		VTS_BSTR VTS_I2 VTS_I2;
+	InvokeHelper(0x30, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
+		strTextFileName, iPage, iOutputType);
 	return result;
 }

@@ -58,4 +58,7 @@ public:
 	afx_msg void OnBnClickedRadio5();
 	CButton m_ChkBorder;
 	afx_msg void OnBnClickedCheckborder();
+	CComboBox m_CboExportText;
+	afx_msg void OnBnClickedBtnexport();
+	short m_iExportTextPage;
 };

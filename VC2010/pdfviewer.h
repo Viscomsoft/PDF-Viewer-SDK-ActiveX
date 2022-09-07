@@ -1,5 +1,5 @@
-#if !defined(AFX_PDFVIEWER_H__5B419C18_9277_411D_8743_B126DFC40417__INCLUDED_)
-#define AFX_PDFVIEWER_H__5B419C18_9277_411D_8743_B126DFC40417__INCLUDED_
+#if !defined(AFX_PDFVIEWER_H__EB8E63C8_F4C2_466E_A439_53FA5D3D0746__INCLUDED_)
+#define AFX_PDFVIEWER_H__EB8E63C8_F4C2_466E_A439_53FA5D3D0746__INCLUDED_
 
 #if _MSC_VER > 1000
 #pragma once
@@ -55,6 +55,8 @@ public:
 	void SetZoom(double);
 	BOOL GetBorder();
 	void SetBorder(BOOL);
+	BOOL GetHighlightAllMatchedText();
+	void SetHighlightAllMatchedText(BOOL);
 
 // Operations
 public:
@@ -89,9 +91,12 @@ public:
 	short SaveBitmapsBySize(LPCTSTR strSaveFileName, short iPageNo, double iScale);
 	BOOL IsEncrypted();
 	short UnicodeLoadPDFFile(BSTR* strPDFFile);
+	void PrinterSetPageSize(short iPageSize);
+	void PrinterSetPageSource(short iPageSource);
+	BOOL ExportText(LPCTSTR strTextFileName, short iPage, short iOutputType);
 };
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_PDFVIEWER_H__5B419C18_9277_411D_8743_B126DFC40417__INCLUDED_)
+#endif // !defined(AFX_PDFVIEWER_H__EB8E63C8_F4C2_466E_A439_53FA5D3D0746__INCLUDED_)
