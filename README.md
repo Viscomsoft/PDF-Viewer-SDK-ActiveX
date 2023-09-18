@@ -13,7 +13,7 @@ Install Viscomsoft PDF Viewer SDK from http://www.viscomsoft.com/products/pdfvie
 2. Support go to specific page when open multipage PDF file.
 
 3. Support open Unicode (e.g. Spanish, German, French, Chinese, Korean, Japanese ) PDF File name and search Unicode text in pages.
-
+ 
 4. Support page panning with the mouse, scroll by grabbing the page with the left mouse button.
 
 5. Support open protected PDF file. Support zoom in and zoom out, custom zoom the PDF file with good quality.
@@ -37,4 +37,6 @@ programmatically.
 
 # How to Tutorials
 C# - How to Add Pdf Viewer to VS 2019 WinForm application from NuGet Packages http://www.viscomsoft.com/popular/pdfviewer/157.html
-
+Visual Foxpro - How to create PDF Viewer and find words in PDF https://youtu.be/9i7BkufidgE
+MS Access 2016 - How to create PDF Viewer and find words in PDF https://youtu.be/ZJAFGbs76dM
+VB6 - How to create PDF Viewer and find words in PDF https://youtu.be/_nwMLo2fHcQ
