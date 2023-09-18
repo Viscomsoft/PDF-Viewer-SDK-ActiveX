@@ -87,28 +87,42 @@ namespace testPDF
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (this.axPDFViewer1.Search(this.textBox1.Text,false) < 0)
+            int iPage = 0;
+            iPage = this.axPDFViewer1.Search(this.textBox1.Text, false);
+
+         
+            if (iPage < 0)
             {
-                MessageBox.Show("Can't search the text");
+                lblsearchtextmsg.Text = "No Matches were found";
             }
+            else
+                lblsearchtextmsg.Text = "Found text at page " + iPage.ToString();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
+            int iPage=0;
             if (this.radioButton1.Checked == true)
             {
-                if (this.axPDFViewer1.SearchPrevText() < 0)
+                iPage=this.axPDFViewer1.SearchPrevText();
+                if (iPage < 0)
                 {
-                    MessageBox.Show("Can't search the text");
+                    lblsearchtextmsg.Text = "No Matches were found";
                 }
-
+                else
+                    lblsearchtextmsg.Text = "Found text at page " + iPage.ToString();
             }
             if (this.radioButton2.Checked == true)
             {
-                if (this.axPDFViewer1.SearchNextText() < 0)
+                iPage = this.axPDFViewer1.SearchNextText();
+
+               // MessageBox.Show("XXX "+iPage.ToString());
+                if (iPage < 0)
                 {
-                    MessageBox.Show("Can't search the text");
+                    lblsearchtextmsg.Text = "No Matches were found";
                 }
+                else
+                    lblsearchtextmsg.Text = "Found text at page " + iPage.ToString();
             }
             
         }
