@@ -43,9 +43,14 @@ Partial Class Form1
         Me.Button13 = New System.Windows.Forms.Button()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblsearchtextmsg = New System.Windows.Forms.Label()
+        Me.chkhighlightallmatch = New System.Windows.Forms.CheckBox()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.cboExportTextType = New System.Windows.Forms.ComboBox()
+        Me.btnExportText = New System.Windows.Forms.Button()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -94,10 +99,10 @@ Partial Class Form1
         'AxPDFViewer1
         '
         Me.AxPDFViewer1.Enabled = True
-        Me.AxPDFViewer1.Location = New System.Drawing.Point(385, 11)
+        Me.AxPDFViewer1.Location = New System.Drawing.Point(385, 4)
         Me.AxPDFViewer1.Name = "AxPDFViewer1"
         Me.AxPDFViewer1.OcxState = CType(resources.GetObject("AxPDFViewer1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxPDFViewer1.Size = New System.Drawing.Size(642, 570)
+        Me.AxPDFViewer1.Size = New System.Drawing.Size(672, 565)
         Me.AxPDFViewer1.TabIndex = 0
         '
         'Button1
@@ -150,7 +155,7 @@ Partial Class Form1
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(25, 69)
+        Me.Button5.Location = New System.Drawing.Point(19, 95)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(124, 23)
         Me.Button5.TabIndex = 6
@@ -159,7 +164,7 @@ Partial Class Form1
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(6, 20)
+        Me.TextBox2.Location = New System.Drawing.Point(7, 46)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(156, 21)
         Me.TextBox2.TabIndex = 7
@@ -236,24 +241,45 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.lblsearchtextmsg)
+        Me.GroupBox1.Controls.Add(Me.chkhighlightallmatch)
         Me.GroupBox1.Controls.Add(Me.RadioButton2)
         Me.GroupBox1.Controls.Add(Me.RadioButton1)
         Me.GroupBox1.Controls.Add(Me.TextBox2)
         Me.GroupBox1.Controls.Add(Me.Button5)
         Me.GroupBox1.Location = New System.Drawing.Point(186, 497)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(168, 113)
+        Me.GroupBox1.Size = New System.Drawing.Size(193, 141)
         Me.GroupBox1.TabIndex = 19
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Search Text"
+        '
+        'lblsearchtextmsg
+        '
+        Me.lblsearchtextmsg.AutoSize = True
+        Me.lblsearchtextmsg.Location = New System.Drawing.Point(12, 126)
+        Me.lblsearchtextmsg.Name = "lblsearchtextmsg"
+        Me.lblsearchtextmsg.Size = New System.Drawing.Size(125, 12)
+        Me.lblsearchtextmsg.TabIndex = 67
+        Me.lblsearchtextmsg.Text = "Found text at Page 1"
+        '
+        'chkhighlightallmatch
+        '
+        Me.chkhighlightallmatch.AutoSize = True
+        Me.chkhighlightallmatch.Location = New System.Drawing.Point(8, 20)
+        Me.chkhighlightallmatch.Name = "chkhighlightallmatch"
+        Me.chkhighlightallmatch.Size = New System.Drawing.Size(90, 8)
+        Me.chkhighlightallmatch.TabIndex = 66
+        Me.chkhighlightallmatch.Text = "Highlight All Matched Text"
+        Me.chkhighlightallmatch.UseVisualStyleBackColor = True
         '
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
         Me.RadioButton2.Checked = True
-        Me.RadioButton2.Location = New System.Drawing.Point(93, 47)
+        Me.RadioButton2.Location = New System.Drawing.Point(93, 73)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(31, 11)
+        Me.RadioButton2.Size = New System.Drawing.Size(24, 8)
         Me.RadioButton2.TabIndex = 9
         Me.RadioButton2.TabStop = True
         Me.RadioButton2.Text = "Down"
@@ -262,23 +288,53 @@ Partial Class Form1
         'RadioButton1
         '
         Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(25, 47)
+        Me.RadioButton1.Location = New System.Drawing.Point(25, 73)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(23, 11)
+        Me.RadioButton1.Size = New System.Drawing.Size(18, 8)
         Me.RadioButton1.TabIndex = 8
         Me.RadioButton1.Text = "Up"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.cboExportTextType)
+        Me.GroupBox2.Controls.Add(Me.btnExportText)
+        Me.GroupBox2.Controls.Add(Me.Label11)
         Me.GroupBox2.Controls.Add(Me.TextBox1)
         Me.GroupBox2.Controls.Add(Me.Button4)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 550)
+        Me.GroupBox2.Location = New System.Drawing.Point(12, 503)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(168, 60)
+        Me.GroupBox2.Size = New System.Drawing.Size(168, 107)
         Me.GroupBox2.TabIndex = 20
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Go to Page"
+        '
+        'cboExportTextType
+        '
+        Me.cboExportTextType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboExportTextType.FormattingEnabled = True
+        Me.cboExportTextType.Location = New System.Drawing.Point(85, 46)
+        Me.cboExportTextType.Name = "cboExportTextType"
+        Me.cboExportTextType.Size = New System.Drawing.Size(85, 20)
+        Me.cboExportTextType.TabIndex = 54
+        '
+        'btnExportText
+        '
+        Me.btnExportText.Location = New System.Drawing.Point(9, 75)
+        Me.btnExportText.Name = "btnExportText"
+        Me.btnExportText.Size = New System.Drawing.Size(141, 24)
+        Me.btnExportText.TabIndex = 54
+        Me.btnExportText.Text = "Export Text "
+        Me.btnExportText.UseVisualStyleBackColor = True
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(6, 49)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(71, 12)
+        Me.Label11.TabIndex = 54
+        Me.Label11.Text = "Export Type"
         '
         'Label2
         '
@@ -324,7 +380,7 @@ Partial Class Form1
         Me.OptionRotate0.AutoSize = True
         Me.OptionRotate0.Location = New System.Drawing.Point(56, 47)
         Me.OptionRotate0.Name = "OptionRotate0"
-        Me.OptionRotate0.Size = New System.Drawing.Size(19, 11)
+        Me.OptionRotate0.Size = New System.Drawing.Size(14, 8)
         Me.OptionRotate0.TabIndex = 4
         Me.OptionRotate0.TabStop = True
         Me.OptionRotate0.Text = "0"
@@ -335,7 +391,7 @@ Partial Class Form1
         Me.OptionRotate45.AutoSize = True
         Me.OptionRotate45.Location = New System.Drawing.Point(11, 46)
         Me.OptionRotate45.Name = "OptionRotate45"
-        Me.OptionRotate45.Size = New System.Drawing.Size(23, 11)
+        Me.OptionRotate45.Size = New System.Drawing.Size(18, 8)
         Me.OptionRotate45.TabIndex = 3
         Me.OptionRotate45.TabStop = True
         Me.OptionRotate45.Text = "45"
@@ -346,7 +402,7 @@ Partial Class Form1
         Me.OptionRotate270.AutoSize = True
         Me.OptionRotate270.Location = New System.Drawing.Point(104, 18)
         Me.OptionRotate270.Name = "OptionRotate270"
-        Me.OptionRotate270.Size = New System.Drawing.Size(27, 11)
+        Me.OptionRotate270.Size = New System.Drawing.Size(20, 8)
         Me.OptionRotate270.TabIndex = 2
         Me.OptionRotate270.TabStop = True
         Me.OptionRotate270.Text = "270"
@@ -357,7 +413,7 @@ Partial Class Form1
         Me.OptionRotate180.AutoSize = True
         Me.OptionRotate180.Location = New System.Drawing.Point(54, 18)
         Me.OptionRotate180.Name = "OptionRotate180"
-        Me.OptionRotate180.Size = New System.Drawing.Size(27, 11)
+        Me.OptionRotate180.Size = New System.Drawing.Size(20, 8)
         Me.OptionRotate180.TabIndex = 1
         Me.OptionRotate180.TabStop = True
         Me.OptionRotate180.Text = "180"
@@ -368,7 +424,7 @@ Partial Class Form1
         Me.OptionRotate90.AutoSize = True
         Me.OptionRotate90.Location = New System.Drawing.Point(11, 18)
         Me.OptionRotate90.Name = "OptionRotate90"
-        Me.OptionRotate90.Size = New System.Drawing.Size(23, 11)
+        Me.OptionRotate90.Size = New System.Drawing.Size(18, 8)
         Me.OptionRotate90.TabIndex = 0
         Me.OptionRotate90.TabStop = True
         Me.OptionRotate90.Text = "90"
@@ -460,7 +516,7 @@ Partial Class Form1
         Me.RadioLandscape.AutoSize = True
         Me.RadioLandscape.Location = New System.Drawing.Point(143, 16)
         Me.RadioLandscape.Name = "RadioLandscape"
-        Me.RadioLandscape.Size = New System.Drawing.Size(51, 11)
+        Me.RadioLandscape.Size = New System.Drawing.Size(38, 8)
         Me.RadioLandscape.TabIndex = 39
         Me.RadioLandscape.Text = "Landscape"
         Me.RadioLandscape.UseVisualStyleBackColor = True
@@ -471,7 +527,7 @@ Partial Class Form1
         Me.RadioButtonPortrait.Checked = True
         Me.RadioButtonPortrait.Location = New System.Drawing.Point(19, 16)
         Me.RadioButtonPortrait.Name = "RadioButtonPortrait"
-        Me.RadioButtonPortrait.Size = New System.Drawing.Size(47, 11)
+        Me.RadioButtonPortrait.Size = New System.Drawing.Size(36, 8)
         Me.RadioButtonPortrait.TabIndex = 38
         Me.RadioButtonPortrait.TabStop = True
         Me.RadioButtonPortrait.Text = "Portrait"
@@ -528,7 +584,7 @@ Partial Class Form1
         Me.chkshowpagesetup.AutoSize = True
         Me.chkshowpagesetup.Location = New System.Drawing.Point(11, 119)
         Me.chkshowpagesetup.Name = "chkshowpagesetup"
-        Me.chkshowpagesetup.Size = New System.Drawing.Size(76, 11)
+        Me.chkshowpagesetup.Size = New System.Drawing.Size(57, 8)
         Me.chkshowpagesetup.TabIndex = 42
         Me.chkshowpagesetup.Text = "Show Page Setup"
         Me.chkshowpagesetup.UseVisualStyleBackColor = True
@@ -642,7 +698,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1049, 749)
+        Me.ClientSize = New System.Drawing.Size(1069, 659)
         Me.Controls.Add(Me.txtcustomzoom)
         Me.Controls.Add(Me.Button16)
         Me.Controls.Add(Me.chkpanning)
@@ -752,5 +808,10 @@ Partial Class Form1
     Friend WithEvents chkpanning As System.Windows.Forms.CheckBox
     Friend WithEvents Button16 As System.Windows.Forms.Button
     Friend WithEvents txtcustomzoom As System.Windows.Forms.TextBox
+    Friend WithEvents cboExportTextType As System.Windows.Forms.ComboBox
+    Friend WithEvents btnExportText As System.Windows.Forms.Button
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Private WithEvents chkhighlightallmatch As System.Windows.Forms.CheckBox
+    Private WithEvents lblsearchtextmsg As System.Windows.Forms.Label
 
 End Class

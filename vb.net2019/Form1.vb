@@ -45,14 +45,22 @@
     End Sub
 
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+        Dim iPage As Integer
+        iPage = 0
         If (Me.RadioButton1.Checked = True) Then
-            If (Me.AxPDFViewer1.SearchPrevText() < 0) Then
-                MessageBox.Show("Can't search text")
+            iPage = Me.AxPDFViewer1.SearchPrevText
+            If (iPage < 0) Then
+                lblsearchtextmsg.Text = "No Matches were found"
+            Else
+                lblsearchtextmsg.Text = "Found text at page " + iPage.ToString()
             End If
         End If
         If (Me.RadioButton2.Checked = True) Then
-            If (Me.AxPDFViewer1.SearchNextText() < 0) Then
-                MessageBox.Show("Can't search text")
+            iPage = AxPDFViewer1.SearchNextText()
+            If (iPage < 0) Then
+                lblsearchtextmsg.Text = "No Matches were found"
+            Else
+                lblsearchtextmsg.Text = "Found text at page " + iPage.ToString()
             End If
         End If
     End Sub
@@ -103,9 +111,17 @@
     End Sub
 
     Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
-        If (Me.AxPDFViewer1.Search(TextBox2.Text, False) < 0) Then
-            MessageBox.Show("Can't search text")
+        Dim iPage As Integer = 0
+
+        iPage = AxPDFViewer1.Search(TextBox2.Text, False)
+
+        If iPage < 0 Then
+            lblsearchtextmsg.Text = "No Matches were found"
+
+        Else
+            lblsearchtextmsg.Text = "Found text at page " + iPage.ToString()
         End If
+
     End Sub
 
     Private Sub Button6_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -162,6 +178,12 @@
         If cboprinter.Items.Count > 0 Then
             cboprinter.SelectedIndex = 0
         End If
+
+        cboExportTextType.Items.Add("UTF8 Text File")
+        cboExportTextType.Items.Add("XML File")
+        cboExportTextType.Items.Add("HTML File")
+        cboExportTextType.SelectedIndex = 0
+
 
     End Sub
 
@@ -249,5 +271,36 @@
 
     Private Sub Button16_Click(sender As System.Object, e As System.EventArgs) Handles Button16.Click
         AxPDFViewer1.Zoom = txtcustomzoom.Text
+    End Sub
+
+    Private Sub btnExportText_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExportText.Click
+        If cboExportTextType.SelectedIndex = 0 Then
+            SaveFileDialog1.Filter = "Text file (*.txt)|*.txt||"
+            SaveFileDialog1.DefaultExt = "txt"
+        ElseIf cboExportTextType.SelectedIndex = 1 Then
+            SaveFileDialog1.Filter = "XML file (*.xml)|*.xml||"
+            SaveFileDialog1.DefaultExt = "xml"
+        ElseIf cboExportTextType.SelectedIndex = 2 Then
+            SaveFileDialog1.Filter = "Html file (*.html)|*.html||"
+            SaveFileDialog1.DefaultExt = "html"
+
+        End If
+
+
+
+        If SaveFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
+
+            AxPDFViewer1.ExportText(SaveFileDialog1.FileName, TextBox1.Text, cboExportTextType.SelectedIndex)
+        End If
+
+    End Sub
+
+    Private Sub chkhighlightallmatch_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkhighlightallmatch.CheckedChanged
+        If chkhighlightallmatch.Checked Then
+            AxPDFViewer1.HighlightAllMatchedText = True
+        Else
+            AxPDFViewer1.HighlightAllMatchedText = False
+
+        End If
     End Sub
 End Class
