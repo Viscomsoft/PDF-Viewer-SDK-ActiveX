@@ -37,6 +37,9 @@ programmatically.
 
 # How to Tutorials
 C# - How to Add Pdf Viewer to VS 2019 WinForm application from NuGet Packages http://www.viscomsoft.com/popular/pdfviewer/157.html
+
 Visual Foxpro - How to create PDF Viewer and find words in PDF https://youtu.be/9i7BkufidgE
+
 MS Access 2016 - How to create PDF Viewer and find words in PDF https://youtu.be/ZJAFGbs76dM
+
 VB6 - How to create PDF Viewer and find words in PDF https://youtu.be/_nwMLo2fHcQ
