@@ -45,14 +45,22 @@
     End Sub
 
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+        Dim iPage As Integer
+        iPage = 0
         If (Me.RadioButton1.Checked = True) Then
-            If (Me.AxPDFViewer1.SearchPrevText() < 0) Then
-                MessageBox.Show("Can't search text")
+            iPage = Me.AxPDFViewer1.SearchPrevText
+            If (iPage < 0) Then
+                lblsearchtextmsg.Text = "No Matches were found"
+            Else
+                lblsearchtextmsg.Text = "Found text at page " + iPage.ToString()
             End If
         End If
         If (Me.RadioButton2.Checked = True) Then
-            If (Me.AxPDFViewer1.SearchNextText() < 0) Then
-                MessageBox.Show("Can't search text")
+            iPage = AxPDFViewer1.SearchNextText()
+            If (iPage < 0) Then
+                lblsearchtextmsg.Text = "No Matches were found"
+            Else
+                lblsearchtextmsg.Text = "Found text at page " + iPage.ToString()
             End If
         End If
     End Sub
@@ -103,9 +111,17 @@
     End Sub
 
     Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
-        If (Me.AxPDFViewer1.Search(TextBox2.Text, False) < 0) Then
-            MessageBox.Show("Can't search text")
+        Dim iPage As Integer = 0
+
+        iPage = AxPDFViewer1.Search(TextBox2.Text, False)
+
+        If iPage < 0 Then
+            lblsearchtextmsg.Text = "No Matches were found"
+
+        Else
+            lblsearchtextmsg.Text = "Found text at page " + iPage.ToString()
         End If
+
     End Sub
 
     Private Sub Button6_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)

@@ -43,6 +43,8 @@ Partial Class Form1
         Me.Button13 = New System.Windows.Forms.Button()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblsearchtextmsg = New System.Windows.Forms.Label()
+        Me.chkhighlightallmatch = New System.Windows.Forms.CheckBox()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -86,7 +88,6 @@ Partial Class Form1
         Me.chkpanning = New System.Windows.Forms.CheckBox()
         Me.Button16 = New System.Windows.Forms.Button()
         Me.txtcustomzoom = New System.Windows.Forms.TextBox()
-        Me.chkhighlightallmatch = New System.Windows.Forms.CheckBox()
         CType(Me.AxPDFViewer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -98,10 +99,10 @@ Partial Class Form1
         'AxPDFViewer1
         '
         Me.AxPDFViewer1.Enabled = True
-        Me.AxPDFViewer1.Location = New System.Drawing.Point(385, 11)
+        Me.AxPDFViewer1.Location = New System.Drawing.Point(385, 4)
         Me.AxPDFViewer1.Name = "AxPDFViewer1"
         Me.AxPDFViewer1.OcxState = CType(resources.GetObject("AxPDFViewer1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxPDFViewer1.Size = New System.Drawing.Size(642, 570)
+        Me.AxPDFViewer1.Size = New System.Drawing.Size(672, 565)
         Me.AxPDFViewer1.TabIndex = 0
         '
         'Button1
@@ -240,6 +241,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.lblsearchtextmsg)
         Me.GroupBox1.Controls.Add(Me.chkhighlightallmatch)
         Me.GroupBox1.Controls.Add(Me.RadioButton2)
         Me.GroupBox1.Controls.Add(Me.RadioButton1)
@@ -252,13 +254,32 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Search Text"
         '
+        'lblsearchtextmsg
+        '
+        Me.lblsearchtextmsg.AutoSize = True
+        Me.lblsearchtextmsg.Location = New System.Drawing.Point(12, 126)
+        Me.lblsearchtextmsg.Name = "lblsearchtextmsg"
+        Me.lblsearchtextmsg.Size = New System.Drawing.Size(125, 12)
+        Me.lblsearchtextmsg.TabIndex = 67
+        Me.lblsearchtextmsg.Text = "Found text at Page 1"
+        '
+        'chkhighlightallmatch
+        '
+        Me.chkhighlightallmatch.AutoSize = True
+        Me.chkhighlightallmatch.Location = New System.Drawing.Point(8, 20)
+        Me.chkhighlightallmatch.Name = "chkhighlightallmatch"
+        Me.chkhighlightallmatch.Size = New System.Drawing.Size(90, 8)
+        Me.chkhighlightallmatch.TabIndex = 66
+        Me.chkhighlightallmatch.Text = "Highlight All Matched Text"
+        Me.chkhighlightallmatch.UseVisualStyleBackColor = True
+        '
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
         Me.RadioButton2.Checked = True
         Me.RadioButton2.Location = New System.Drawing.Point(93, 73)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(47, 16)
+        Me.RadioButton2.Size = New System.Drawing.Size(24, 8)
         Me.RadioButton2.TabIndex = 9
         Me.RadioButton2.TabStop = True
         Me.RadioButton2.Text = "Down"
@@ -269,7 +290,7 @@ Partial Class Form1
         Me.RadioButton1.AutoSize = True
         Me.RadioButton1.Location = New System.Drawing.Point(25, 73)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(35, 16)
+        Me.RadioButton1.Size = New System.Drawing.Size(18, 8)
         Me.RadioButton1.TabIndex = 8
         Me.RadioButton1.Text = "Up"
         Me.RadioButton1.UseVisualStyleBackColor = True
@@ -359,7 +380,7 @@ Partial Class Form1
         Me.OptionRotate0.AutoSize = True
         Me.OptionRotate0.Location = New System.Drawing.Point(56, 47)
         Me.OptionRotate0.Name = "OptionRotate0"
-        Me.OptionRotate0.Size = New System.Drawing.Size(29, 16)
+        Me.OptionRotate0.Size = New System.Drawing.Size(14, 8)
         Me.OptionRotate0.TabIndex = 4
         Me.OptionRotate0.TabStop = True
         Me.OptionRotate0.Text = "0"
@@ -370,7 +391,7 @@ Partial Class Form1
         Me.OptionRotate45.AutoSize = True
         Me.OptionRotate45.Location = New System.Drawing.Point(11, 46)
         Me.OptionRotate45.Name = "OptionRotate45"
-        Me.OptionRotate45.Size = New System.Drawing.Size(35, 16)
+        Me.OptionRotate45.Size = New System.Drawing.Size(18, 8)
         Me.OptionRotate45.TabIndex = 3
         Me.OptionRotate45.TabStop = True
         Me.OptionRotate45.Text = "45"
@@ -381,7 +402,7 @@ Partial Class Form1
         Me.OptionRotate270.AutoSize = True
         Me.OptionRotate270.Location = New System.Drawing.Point(104, 18)
         Me.OptionRotate270.Name = "OptionRotate270"
-        Me.OptionRotate270.Size = New System.Drawing.Size(41, 16)
+        Me.OptionRotate270.Size = New System.Drawing.Size(20, 8)
         Me.OptionRotate270.TabIndex = 2
         Me.OptionRotate270.TabStop = True
         Me.OptionRotate270.Text = "270"
@@ -392,7 +413,7 @@ Partial Class Form1
         Me.OptionRotate180.AutoSize = True
         Me.OptionRotate180.Location = New System.Drawing.Point(54, 18)
         Me.OptionRotate180.Name = "OptionRotate180"
-        Me.OptionRotate180.Size = New System.Drawing.Size(41, 16)
+        Me.OptionRotate180.Size = New System.Drawing.Size(20, 8)
         Me.OptionRotate180.TabIndex = 1
         Me.OptionRotate180.TabStop = True
         Me.OptionRotate180.Text = "180"
@@ -403,7 +424,7 @@ Partial Class Form1
         Me.OptionRotate90.AutoSize = True
         Me.OptionRotate90.Location = New System.Drawing.Point(11, 18)
         Me.OptionRotate90.Name = "OptionRotate90"
-        Me.OptionRotate90.Size = New System.Drawing.Size(35, 16)
+        Me.OptionRotate90.Size = New System.Drawing.Size(18, 8)
         Me.OptionRotate90.TabIndex = 0
         Me.OptionRotate90.TabStop = True
         Me.OptionRotate90.Text = "90"
@@ -495,7 +516,7 @@ Partial Class Form1
         Me.RadioLandscape.AutoSize = True
         Me.RadioLandscape.Location = New System.Drawing.Point(143, 16)
         Me.RadioLandscape.Name = "RadioLandscape"
-        Me.RadioLandscape.Size = New System.Drawing.Size(77, 16)
+        Me.RadioLandscape.Size = New System.Drawing.Size(38, 8)
         Me.RadioLandscape.TabIndex = 39
         Me.RadioLandscape.Text = "Landscape"
         Me.RadioLandscape.UseVisualStyleBackColor = True
@@ -506,7 +527,7 @@ Partial Class Form1
         Me.RadioButtonPortrait.Checked = True
         Me.RadioButtonPortrait.Location = New System.Drawing.Point(19, 16)
         Me.RadioButtonPortrait.Name = "RadioButtonPortrait"
-        Me.RadioButtonPortrait.Size = New System.Drawing.Size(71, 16)
+        Me.RadioButtonPortrait.Size = New System.Drawing.Size(36, 8)
         Me.RadioButtonPortrait.TabIndex = 38
         Me.RadioButtonPortrait.TabStop = True
         Me.RadioButtonPortrait.Text = "Portrait"
@@ -563,7 +584,7 @@ Partial Class Form1
         Me.chkshowpagesetup.AutoSize = True
         Me.chkshowpagesetup.Location = New System.Drawing.Point(11, 119)
         Me.chkshowpagesetup.Name = "chkshowpagesetup"
-        Me.chkshowpagesetup.Size = New System.Drawing.Size(114, 16)
+        Me.chkshowpagesetup.Size = New System.Drawing.Size(57, 8)
         Me.chkshowpagesetup.TabIndex = 42
         Me.chkshowpagesetup.Text = "Show Page Setup"
         Me.chkshowpagesetup.UseVisualStyleBackColor = True
@@ -647,7 +668,7 @@ Partial Class Form1
         Me.chkpanning.Checked = True
         Me.chkpanning.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkpanning.Location = New System.Drawing.Point(200, 19)
-        Me.chkpanning.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkpanning.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.chkpanning.Name = "chkpanning"
         Me.chkpanning.Size = New System.Drawing.Size(174, 16)
         Me.chkpanning.TabIndex = 51
@@ -657,7 +678,7 @@ Partial Class Form1
         'Button16
         '
         Me.Button16.Location = New System.Drawing.Point(183, 202)
-        Me.Button16.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button16.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Button16.Name = "Button16"
         Me.Button16.Size = New System.Drawing.Size(94, 23)
         Me.Button16.TabIndex = 52
@@ -667,27 +688,17 @@ Partial Class Form1
         'txtcustomzoom
         '
         Me.txtcustomzoom.Location = New System.Drawing.Point(288, 206)
-        Me.txtcustomzoom.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtcustomzoom.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtcustomzoom.Name = "txtcustomzoom"
         Me.txtcustomzoom.Size = New System.Drawing.Size(68, 21)
         Me.txtcustomzoom.TabIndex = 53
         Me.txtcustomzoom.Text = "2.0"
         '
-        'chkhighlightallmatch
-        '
-        Me.chkhighlightallmatch.AutoSize = True
-        Me.chkhighlightallmatch.Location = New System.Drawing.Point(8, 20)
-        Me.chkhighlightallmatch.Name = "chkhighlightallmatch"
-        Me.chkhighlightallmatch.Size = New System.Drawing.Size(180, 16)
-        Me.chkhighlightallmatch.TabIndex = 66
-        Me.chkhighlightallmatch.Text = "Highlight All Matched Text"
-        Me.chkhighlightallmatch.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1028, 650)
+        Me.ClientSize = New System.Drawing.Size(1069, 659)
         Me.Controls.Add(Me.txtcustomzoom)
         Me.Controls.Add(Me.Button16)
         Me.Controls.Add(Me.chkpanning)
@@ -801,5 +812,6 @@ Partial Class Form1
     Friend WithEvents btnExportText As System.Windows.Forms.Button
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Private WithEvents chkhighlightallmatch As System.Windows.Forms.CheckBox
+    Private WithEvents lblsearchtextmsg As System.Windows.Forms.Label
 
 End Class
