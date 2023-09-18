@@ -3,13 +3,13 @@ Object = "{49BEA983-661F-4F32-8793-E638A91989AF}#1.0#0"; "PDFViewer.ocx"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
 Begin VB.Form Form1 
    Caption         =   "PDF Viewer Control"
-   ClientHeight    =   7335
+   ClientHeight    =   9990
    ClientLeft      =   165
    ClientTop       =   555
-   ClientWidth     =   14280
+   ClientWidth     =   16935
    LinkTopic       =   "Form1"
-   ScaleHeight     =   7335
-   ScaleWidth      =   14280
+   ScaleHeight     =   9990
+   ScaleWidth      =   16935
    StartUpPosition =   3  'Windows Default
    Begin VB.TextBox txtcustomzoom 
       Height          =   285
@@ -79,7 +79,7 @@ Begin VB.Form Form1
       Width           =   2535
    End
    Begin VB.Frame Frame5 
-      Height          =   2895
+      Height          =   2655
       Left            =   240
       TabIndex        =   32
       Top             =   5040
@@ -89,8 +89,8 @@ Begin VB.Form Form1
          Height          =   375
          Left            =   240
          TabIndex        =   45
-         Top             =   2400
-         Width           =   2535
+         Top             =   2160
+         Width           =   1455
       End
       Begin VB.CheckBox chkshowpagesetup 
          Caption         =   "Show Page Setup"
@@ -311,7 +311,7 @@ Begin VB.Form Form1
       Height          =   1095
       Left            =   240
       TabIndex        =   13
-      Top             =   8040
+      Top             =   7800
       Width           =   2415
       Begin VB.TextBox totalpage 
          Height          =   405
@@ -323,17 +323,25 @@ Begin VB.Form Form1
    End
    Begin VB.Frame Frame1 
       Caption         =   "Search Text"
-      Height          =   1455
+      Height          =   2175
       Left            =   2760
       TabIndex        =   8
-      Top             =   8040
-      Width           =   2535
+      Top             =   7800
+      Width           =   2655
+      Begin VB.CheckBox chkhighlightallmatch 
+         Caption         =   "Highlight All Matched Text"
+         Height          =   255
+         Left            =   240
+         TabIndex        =   57
+         Top             =   240
+         Width           =   2295
+      End
       Begin VB.CommandButton search 
          Caption         =   "Search"
          Height          =   375
          Left            =   240
          TabIndex        =   12
-         Top             =   1080
+         Top             =   1320
          Width           =   1935
       End
       Begin VB.OptionButton down 
@@ -341,7 +349,7 @@ Begin VB.Form Form1
          Height          =   375
          Left            =   1200
          TabIndex        =   11
-         Top             =   600
+         Top             =   960
          Value           =   -1  'True
          Width           =   855
       End
@@ -350,15 +358,23 @@ Begin VB.Form Form1
          Height          =   375
          Left            =   240
          TabIndex        =   10
-         Top             =   600
+         Top             =   960
          Width           =   855
       End
       Begin VB.TextBox searchtext 
          Height          =   375
          Left            =   120
          TabIndex        =   9
-         Top             =   240
+         Top             =   600
          Width           =   2175
+      End
+      Begin VB.Label lblsearchtextmsg 
+         Caption         =   "Found Text at Page 1"
+         Height          =   255
+         Left            =   240
+         TabIndex        =   58
+         Top             =   1800
+         Width           =   2295
       End
    End
    Begin VB.CommandButton print 
@@ -495,6 +511,16 @@ Else
     PDFViewer1.EnablePanning = False
 End If
 
+
+End Sub
+
+Private Sub chkhighlightallmatch_Click()
+If Me.chkhighlightallmatch.Value = 1 Then
+    PDFViewer1.HighlightAllMatchedText = True
+Else
+    PDFViewer1.HighlightAllMatchedText = False
+
+End If
 
 End Sub
 
@@ -675,18 +701,38 @@ Private Sub savebitmaps_Click()
 End Sub
 
 Private Sub search_Click()
+Dim iPage As Integer
 If Me.up.Value = True Then
-  Me.PDFViewer1.SearchPrevText
+  iPage = Me.PDFViewer1.SearchPrevText
 End If
 If Me.down.Value = True Then
-  Me.PDFViewer1.SearchNextText
+  iPage = Me.PDFViewer1.SearchNextText
 End If
 
 
+
+
+        If iPage < 0 Then
+           lblsearchtextmsg.Caption = "No Matches were found"
+
+        Else
+            lblsearchtextmsg.Caption = "Found text at page " + Trim(Str(iPage))
+        End If
 End Sub
 
 Private Sub searchtext_Change()
-Me.PDFViewer1.search searchtext.Text, False
+Dim iPage As Integer
+
+iPage = Me.PDFViewer1.search(searchtext.Text, False)
+
+
+        If iPage < 0 Then
+           lblsearchtextmsg.Caption = "No Matches were found"
+
+        Else
+            lblsearchtextmsg.Caption = "Found text at page " + Trim(Str(iPage))
+        End If
+        
 End Sub
 
 Private Sub zoomin_Click()
