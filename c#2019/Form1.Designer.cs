@@ -39,11 +39,15 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkhighlightallmatch = new System.Windows.Forms.CheckBox();
             this.button6 = new System.Windows.Forms.Button();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cboExportTextType = new System.Windows.Forms.ComboBox();
+            this.btnExportText = new System.Windows.Forms.Button();
+            this.Label11 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button8 = new System.Windows.Forms.Button();
@@ -88,6 +92,7 @@
             this.chkpanning = new System.Windows.Forms.CheckBox();
             this.txtcustomzoom = new System.Windows.Forms.TextBox();
             this.Button16 = new System.Windows.Forms.Button();
+            this.lblsearchtextmsg = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -162,21 +167,34 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblsearchtextmsg);
+            this.groupBox1.Controls.Add(this.chkhighlightallmatch);
             this.groupBox1.Controls.Add(this.button6);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(166, 569);
+            this.groupBox1.Location = new System.Drawing.Point(206, 489);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(173, 108);
+            this.groupBox1.Size = new System.Drawing.Size(187, 145);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search Text";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // chkhighlightallmatch
+            // 
+            this.chkhighlightallmatch.AutoSize = true;
+            this.chkhighlightallmatch.Location = new System.Drawing.Point(6, 14);
+            this.chkhighlightallmatch.Name = "chkhighlightallmatch";
+            this.chkhighlightallmatch.Size = new System.Drawing.Size(180, 16);
+            this.chkhighlightallmatch.TabIndex = 65;
+            this.chkhighlightallmatch.Text = "Highlight All Matched Text";
+            this.chkhighlightallmatch.UseVisualStyleBackColor = true;
+            this.chkhighlightallmatch.CheckedChanged += new System.EventHandler(this.chkhighlightallmatch_CheckedChanged);
+            // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(15, 69);
+            this.button6.Location = new System.Drawing.Point(9, 85);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(132, 23);
             this.button6.TabIndex = 3;
@@ -188,7 +206,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Checked = true;
-            this.radioButton2.Location = new System.Drawing.Point(100, 47);
+            this.radioButton2.Location = new System.Drawing.Point(97, 63);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(47, 16);
             this.radioButton2.TabIndex = 2;
@@ -199,7 +217,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(15, 47);
+            this.radioButton1.Location = new System.Drawing.Point(12, 63);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(35, 16);
             this.radioButton1.TabIndex = 1;
@@ -208,7 +226,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 20);
+            this.textBox1.Location = new System.Drawing.Point(7, 36);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(158, 21);
             this.textBox1.TabIndex = 0;
@@ -216,14 +234,45 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cboExportTextType);
+            this.groupBox2.Controls.Add(this.btnExportText);
+            this.groupBox2.Controls.Add(this.Label11);
             this.groupBox2.Controls.Add(this.button7);
             this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Location = new System.Drawing.Point(17, 630);
+            this.groupBox2.Location = new System.Drawing.Point(21, 633);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(140, 64);
+            this.groupBox2.Size = new System.Drawing.Size(214, 133);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Go to Page";
+            // 
+            // cboExportTextType
+            // 
+            this.cboExportTextType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboExportTextType.FormattingEnabled = true;
+            this.cboExportTextType.Location = new System.Drawing.Point(91, 62);
+            this.cboExportTextType.Name = "cboExportTextType";
+            this.cboExportTextType.Size = new System.Drawing.Size(117, 20);
+            this.cboExportTextType.TabIndex = 57;
+            // 
+            // btnExportText
+            // 
+            this.btnExportText.Location = new System.Drawing.Point(15, 91);
+            this.btnExportText.Name = "btnExportText";
+            this.btnExportText.Size = new System.Drawing.Size(141, 24);
+            this.btnExportText.TabIndex = 56;
+            this.btnExportText.Text = "Export Text ";
+            this.btnExportText.UseVisualStyleBackColor = true;
+            this.btnExportText.Click += new System.EventHandler(this.btnExportText_Click);
+            // 
+            // Label11
+            // 
+            this.Label11.AutoSize = true;
+            this.Label11.Location = new System.Drawing.Point(12, 65);
+            this.Label11.Name = "Label11";
+            this.Label11.Size = new System.Drawing.Size(71, 12);
+            this.Label11.TabIndex = 55;
+            this.Label11.Text = "Export Type";
             // 
             // button7
             // 
@@ -241,6 +290,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(54, 21);
             this.textBox2.TabIndex = 0;
+            this.textBox2.Text = "1";
             // 
             // button8
             // 
@@ -275,7 +325,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(14, 560);
+            this.groupBox3.Location = new System.Drawing.Point(17, 536);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(143, 64);
             this.groupBox3.TabIndex = 12;
@@ -653,11 +703,20 @@
             this.Button16.UseVisualStyleBackColor = true;
             this.Button16.Click += new System.EventHandler(this.Button16_Click);
             // 
+            // lblsearchtextmsg
+            // 
+            this.lblsearchtextmsg.AutoSize = true;
+            this.lblsearchtextmsg.Location = new System.Drawing.Point(10, 120);
+            this.lblsearchtextmsg.Name = "lblsearchtextmsg";
+            this.lblsearchtextmsg.Size = new System.Drawing.Size(125, 12);
+            this.lblsearchtextmsg.TabIndex = 66;
+            this.lblsearchtextmsg.Text = "Found text at Page 1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 724);
+            this.ClientSize = new System.Drawing.Size(1007, 835);
             this.Controls.Add(this.txtcustomzoom);
             this.Controls.Add(this.Button16);
             this.Controls.Add(this.chkpanning);
@@ -779,6 +838,11 @@
         internal System.Windows.Forms.CheckBox chkpanning;
         internal System.Windows.Forms.TextBox txtcustomzoom;
         internal System.Windows.Forms.Button Button16;
+        internal System.Windows.Forms.ComboBox cboExportTextType;
+        internal System.Windows.Forms.Button btnExportText;
+        internal System.Windows.Forms.Label Label11;
+        private System.Windows.Forms.CheckBox chkhighlightallmatch;
+        private System.Windows.Forms.Label lblsearchtextmsg;
     }
 }
 
