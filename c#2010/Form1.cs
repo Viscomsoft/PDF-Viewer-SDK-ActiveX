@@ -18,6 +18,7 @@ namespace testPDF
 
         private void Open_Click(object sender, EventArgs e)
         {
+            int iResult = 0;
             this.openFileDialog1.Filter = "PDF Files (*.pdf)|*.pdf|All Files (*.*))|*.* ";
 
             if (this.openFileDialog1.ShowDialog(this) == DialogResult.OK)
@@ -28,11 +29,18 @@ namespace testPDF
                     this.axPDFViewer1.Password = this.TextBoxPassword.Text;
                 }
 
-                if (this.axPDFViewer1.LoadPDFFile(this.openFileDialog1.FileName) < 0)
+                iResult = this.axPDFViewer1.LoadPDFFile(this.openFileDialog1.FileName);
+
+                if (iResult ==-1)
                 {
                     MessageBox.Show("Load File Failed");
+                    return;
                 }
-
+                if (iResult == -2)
+                {
+                    MessageBox.Show("Password is not correct");
+                    return;
+                }
                 
 
                 if( axPDFViewer1.IsEncrypted() && TextBoxPassword.Text=="") 
@@ -43,6 +51,7 @@ namespace testPDF
 
                 this.label1.Text = Convert.ToString(this.axPDFViewer1.TotalPage);
                 txtprintto.Text = axPDFViewer1.PrinterGetPageCount().ToString();
+                RefreshPageNumber();
             }
         }
 
@@ -130,16 +139,19 @@ namespace testPDF
         private void button7_Click(object sender, EventArgs e)
         {
             this.axPDFViewer1.GoToPage(Convert.ToInt16(this.textBox2.Text));
+            RefreshPageNumber();
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
             this.axPDFViewer1.GoToPrevPage();
+            RefreshPageNumber();
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
             this.axPDFViewer1.GoToNextPage();
+            RefreshPageNumber();
         }
 
         private void button11_Click(object sender, EventArgs e)
@@ -322,6 +334,58 @@ namespace testPDF
             else
                 axPDFViewer1.HighlightAllMatchedText = false;
          
+        }
+        private void ChangePage(short iDelta)
+        {
+          
+            if (iDelta > 0) // wheel up
+            {
+                this.axPDFViewer1.GoToPrevPage();
+              
+            }
+            else
+            {
+                this.axPDFViewer1.GoToNextPage();
+            }
+
+           
+        }
+
+        private void RefreshPageNumber()
+        {
+            lblcurrentpage.Text = "Current Page:" + axPDFViewer1.GetCurrentPage().ToString();
+        }
+        private void axPDFViewer1_OnMouseWheel(object sender, AxPDFViewerLib._DPDFViewerEvents_OnMouseWheelEvent e)
+        {
+            if (radioChangePage1.Checked)
+            {
+                ChangePage(e.iDelta);
+               
+            }
+
+            else if (radioChangePage2.Checked)
+            {
+                if (e.bControlDown)
+                {
+                    ChangePage(e.iDelta);
+                   
+                }
+            }
+
+            else if (radioChangePage3.Checked)
+            {
+                if (e.bRButtonDown)
+                {
+                    ChangePage(e.iDelta);
+                  
+                }
+            }
+            RefreshPageNumber();
+        }
+
+        private void axPDFViewer1_MMouseButtonDblClk(object sender, EventArgs e)
+        {
+            button5.PerformClick();
         }
     }
 }

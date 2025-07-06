@@ -39,6 +39,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblsearchtextmsg = new System.Windows.Forms.Label();
             this.chkhighlightallmatch = new System.Windows.Forms.CheckBox();
             this.button6 = new System.Windows.Forms.Button();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -92,13 +93,19 @@
             this.chkpanning = new System.Windows.Forms.CheckBox();
             this.txtcustomzoom = new System.Windows.Forms.TextBox();
             this.Button16 = new System.Windows.Forms.Button();
-            this.lblsearchtextmsg = new System.Windows.Forms.Label();
+            this.radioChangePage3 = new System.Windows.Forms.RadioButton();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.radioChangePage2 = new System.Windows.Forms.RadioButton();
+            this.radioChangePage1 = new System.Windows.Forms.RadioButton();
+            this.lblcurrentpage = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axPDFViewer1)).BeginInit();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // Open
@@ -173,18 +180,27 @@
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(206, 489);
+            this.groupBox1.Location = new System.Drawing.Point(206, 389);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(187, 145);
+            this.groupBox1.Size = new System.Drawing.Size(180, 145);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search Text";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // lblsearchtextmsg
+            // 
+            this.lblsearchtextmsg.AutoSize = true;
+            this.lblsearchtextmsg.Location = new System.Drawing.Point(10, 120);
+            this.lblsearchtextmsg.Name = "lblsearchtextmsg";
+            this.lblsearchtextmsg.Size = new System.Drawing.Size(125, 12);
+            this.lblsearchtextmsg.TabIndex = 66;
+            this.lblsearchtextmsg.Text = "Found text at Page 1";
+            // 
             // chkhighlightallmatch
             // 
             this.chkhighlightallmatch.AutoSize = true;
-            this.chkhighlightallmatch.Location = new System.Drawing.Point(6, 14);
+            this.chkhighlightallmatch.Location = new System.Drawing.Point(0, 14);
             this.chkhighlightallmatch.Name = "chkhighlightallmatch";
             this.chkhighlightallmatch.Size = new System.Drawing.Size(180, 16);
             this.chkhighlightallmatch.TabIndex = 65;
@@ -239,9 +255,9 @@
             this.groupBox2.Controls.Add(this.Label11);
             this.groupBox2.Controls.Add(this.button7);
             this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Location = new System.Drawing.Point(21, 633);
+            this.groupBox2.Location = new System.Drawing.Point(200, 538);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(214, 133);
+            this.groupBox2.Size = new System.Drawing.Size(179, 122);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Go to Page";
@@ -252,7 +268,7 @@
             this.cboExportTextType.FormattingEnabled = true;
             this.cboExportTextType.Location = new System.Drawing.Point(91, 62);
             this.cboExportTextType.Name = "cboExportTextType";
-            this.cboExportTextType.Size = new System.Drawing.Size(117, 20);
+            this.cboExportTextType.Size = new System.Drawing.Size(83, 20);
             this.cboExportTextType.TabIndex = 57;
             // 
             // btnExportText
@@ -304,7 +320,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(379, 668);
+            this.button9.Location = new System.Drawing.Point(556, 723);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(116, 26);
             this.button9.TabIndex = 10;
@@ -314,7 +330,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(548, 668);
+            this.button10.Location = new System.Drawing.Point(678, 723);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(116, 26);
             this.button10.TabIndex = 11;
@@ -327,7 +343,7 @@
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Location = new System.Drawing.Point(17, 536);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(143, 64);
+            this.groupBox3.Size = new System.Drawing.Size(143, 50);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Total Page";
@@ -492,7 +508,7 @@
             // RadioLandscape
             // 
             this.RadioLandscape.AutoSize = true;
-            this.RadioLandscape.Location = new System.Drawing.Point(143, 16);
+            this.RadioLandscape.Location = new System.Drawing.Point(108, 18);
             this.RadioLandscape.Name = "RadioLandscape";
             this.RadioLandscape.Size = new System.Drawing.Size(77, 16);
             this.RadioLandscape.TabIndex = 39;
@@ -502,7 +518,7 @@
             // Label4
             // 
             this.Label4.AutoSize = true;
-            this.Label4.Location = new System.Drawing.Point(152, 454);
+            this.Label4.Location = new System.Drawing.Point(19, 454);
             this.Label4.Name = "Label4";
             this.Label4.Size = new System.Drawing.Size(83, 12);
             this.Label4.TabIndex = 50;
@@ -535,7 +551,7 @@
             this.groupBox5.Controls.Add(this.RadioButtonPortrait);
             this.groupBox5.Location = new System.Drawing.Point(15, 411);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(294, 40);
+            this.groupBox5.Size = new System.Drawing.Size(185, 40);
             this.groupBox5.TabIndex = 49;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Page Orientation";
@@ -543,7 +559,7 @@
             // Label7
             // 
             this.Label7.AutoSize = true;
-            this.Label7.Location = new System.Drawing.Point(176, 392);
+            this.Label7.Location = new System.Drawing.Point(134, 389);
             this.Label7.Name = "Label7";
             this.Label7.Size = new System.Drawing.Size(17, 12);
             this.Label7.TabIndex = 48;
@@ -551,9 +567,9 @@
             // 
             // txtprintto
             // 
-            this.txtprintto.Location = new System.Drawing.Point(215, 387);
+            this.txtprintto.Location = new System.Drawing.Point(167, 386);
             this.txtprintto.Name = "txtprintto";
-            this.txtprintto.Size = new System.Drawing.Size(69, 21);
+            this.txtprintto.Size = new System.Drawing.Size(39, 21);
             this.txtprintto.TabIndex = 47;
             this.txtprintto.Text = "1";
             // 
@@ -561,7 +577,7 @@
             // 
             this.txtprintfrom.Location = new System.Drawing.Point(102, 386);
             this.txtprintfrom.Name = "txtprintfrom";
-            this.txtprintfrom.Size = new System.Drawing.Size(69, 21);
+            this.txtprintfrom.Size = new System.Drawing.Size(26, 21);
             this.txtprintfrom.TabIndex = 46;
             this.txtprintfrom.Text = "1";
             // 
@@ -586,12 +602,14 @@
             // axPDFViewer1
             // 
             this.axPDFViewer1.Enabled = true;
-            this.axPDFViewer1.Location = new System.Drawing.Point(399, 12);
+            this.axPDFViewer1.Location = new System.Drawing.Point(392, 6);
             this.axPDFViewer1.Name = "axPDFViewer1";
             this.axPDFViewer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axPDFViewer1.OcxState")));
-            this.axPDFViewer1.Size = new System.Drawing.Size(566, 649);
+            this.axPDFViewer1.Size = new System.Drawing.Size(620, 665);
             this.axPDFViewer1.TabIndex = 0;
             this.axPDFViewer1.OnPrint += new AxPDFViewerLib._DPDFViewerEvents_OnPrintEventHandler(this.axPDFViewer1_OnPrint);
+            this.axPDFViewer1.OnMouseWheel += new AxPDFViewerLib._DPDFViewerEvents_OnMouseWheelEventHandler(this.axPDFViewer1_OnMouseWheel);
+            this.axPDFViewer1.MMouseButtonDblClk += new System.EventHandler(this.axPDFViewer1_MMouseButtonDblClk);
             // 
             // BtnFitWindow
             // 
@@ -703,20 +721,76 @@
             this.Button16.UseVisualStyleBackColor = true;
             this.Button16.Click += new System.EventHandler(this.Button16_Click);
             // 
-            // lblsearchtextmsg
+            // radioChangePage3
             // 
-            this.lblsearchtextmsg.AutoSize = true;
-            this.lblsearchtextmsg.Location = new System.Drawing.Point(10, 120);
-            this.lblsearchtextmsg.Name = "lblsearchtextmsg";
-            this.lblsearchtextmsg.Size = new System.Drawing.Size(125, 12);
-            this.lblsearchtextmsg.TabIndex = 66;
-            this.lblsearchtextmsg.Text = "Found text at Page 1";
+            this.radioChangePage3.AutoSize = true;
+            this.radioChangePage3.Location = new System.Drawing.Point(11, 75);
+            this.radioChangePage3.Name = "radioChangePage3";
+            this.radioChangePage3.Size = new System.Drawing.Size(275, 16);
+            this.radioChangePage3.TabIndex = 2;
+            this.radioChangePage3.Text = "Right mouse button + scrolling mouse wheel";
+            this.radioChangePage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.radioChangePage3);
+            this.groupBox10.Controls.Add(this.radioChangePage2);
+            this.groupBox10.Controls.Add(this.radioChangePage1);
+            this.groupBox10.Location = new System.Drawing.Point(17, 666);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(362, 95);
+            this.groupBox10.TabIndex = 65;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "change pages by scrolling mouse wheel ";
+            // 
+            // radioChangePage2
+            // 
+            this.radioChangePage2.AutoSize = true;
+            this.radioChangePage2.Checked = true;
+            this.radioChangePage2.Location = new System.Drawing.Point(12, 48);
+            this.radioChangePage2.Name = "radioChangePage2";
+            this.radioChangePage2.Size = new System.Drawing.Size(215, 16);
+            this.radioChangePage2.TabIndex = 1;
+            this.radioChangePage2.TabStop = true;
+            this.radioChangePage2.Text = "Ctrl Key + scrolling mouse wheel";
+            this.radioChangePage2.UseVisualStyleBackColor = true;
+            // 
+            // radioChangePage1
+            // 
+            this.radioChangePage1.AutoSize = true;
+            this.radioChangePage1.Location = new System.Drawing.Point(12, 20);
+            this.radioChangePage1.Name = "radioChangePage1";
+            this.radioChangePage1.Size = new System.Drawing.Size(149, 16);
+            this.radioChangePage1.TabIndex = 0;
+            this.radioChangePage1.Text = "Scrolling mouse wheel";
+            this.radioChangePage1.UseVisualStyleBackColor = true;
+            // 
+            // lblcurrentpage
+            // 
+            this.lblcurrentpage.AutoSize = true;
+            this.lblcurrentpage.Location = new System.Drawing.Point(19, 599);
+            this.lblcurrentpage.Name = "lblcurrentpage";
+            this.lblcurrentpage.Size = new System.Drawing.Size(95, 12);
+            this.lblcurrentpage.TabIndex = 66;
+            this.lblcurrentpage.Text = "Current Page: 0";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(390, 684);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(401, 12);
+            this.label12.TabIndex = 67;
+            this.label12.Text = "double click middle mouse button on control, it will print the PDF";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 835);
+            this.ClientSize = new System.Drawing.Size(1015, 785);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.lblcurrentpage);
+            this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.txtcustomzoom);
             this.Controls.Add(this.Button16);
             this.Controls.Add(this.chkpanning);
@@ -772,6 +846,8 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axPDFViewer1)).EndInit();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -843,6 +919,12 @@
         internal System.Windows.Forms.Label Label11;
         private System.Windows.Forms.CheckBox chkhighlightallmatch;
         private System.Windows.Forms.Label lblsearchtextmsg;
+        private System.Windows.Forms.RadioButton radioChangePage3;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.RadioButton radioChangePage2;
+        private System.Windows.Forms.RadioButton radioChangePage1;
+        private System.Windows.Forms.Label lblcurrentpage;
+        private System.Windows.Forms.Label label12;
     }
 }
 
