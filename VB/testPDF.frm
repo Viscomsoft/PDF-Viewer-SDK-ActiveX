@@ -3,14 +3,55 @@ Object = "{49BEA983-661F-4F32-8793-E638A91989AF}#1.0#0"; "PDFViewer.ocx"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
 Begin VB.Form Form1 
    Caption         =   "PDF Viewer Control"
-   ClientHeight    =   9990
+   ClientHeight    =   6615
    ClientLeft      =   165
    ClientTop       =   555
-   ClientWidth     =   16935
+   ClientWidth     =   14280
    LinkTopic       =   "Form1"
-   ScaleHeight     =   9990
-   ScaleWidth      =   16935
+   ScaleHeight     =   6615
+   ScaleWidth      =   14280
    StartUpPosition =   3  'Windows Default
+   Begin VB.Frame Frame9 
+      Caption         =   "change pages by scrolling mouse wheel"
+      Height          =   2055
+      Left            =   120
+      TabIndex        =   59
+      Top             =   7920
+      Width           =   3615
+      Begin VB.OptionButton OptionChangePage1 
+         Caption         =   "Scrolling mouse wheel"
+         Height          =   375
+         Left            =   360
+         TabIndex        =   62
+         Top             =   360
+         Width           =   3015
+      End
+      Begin VB.OptionButton OptionChangePage2 
+         Caption         =   "Ctrl Key + Scrolling mouse wheel"
+         Height          =   255
+         Left            =   360
+         TabIndex        =   61
+         Top             =   840
+         Value           =   -1  'True
+         Width           =   2895
+      End
+      Begin VB.OptionButton OptionChangePage3 
+         Caption         =   "Right Mouse button + Scrolling mouse "
+         Height          =   375
+         Left            =   360
+         TabIndex        =   60
+         Top             =   1200
+         Width           =   3735
+      End
+      Begin VB.Label Label11 
+         Caption         =   "wheel"
+         Height          =   255
+         Left            =   600
+         TabIndex        =   63
+         Top             =   1560
+         Width           =   735
+      End
+   End
    Begin VB.TextBox txtcustomzoom 
       Height          =   285
       Left            =   4320
@@ -83,7 +124,7 @@ Begin VB.Form Form1
       Left            =   240
       TabIndex        =   32
       Top             =   5040
-      Width           =   4815
+      Width           =   3495
       Begin VB.CommandButton Command3 
          Caption         =   "Print (No UI)"
          Height          =   375
@@ -106,11 +147,11 @@ Begin VB.Form Form1
          Left            =   240
          TabIndex        =   39
          Top             =   960
-         Width           =   3495
+         Width           =   3135
          Begin VB.OptionButton OptionLandscape 
             Caption         =   "Landscape"
             Height          =   255
-            Left            =   1800
+            Left            =   1320
             TabIndex        =   41
             Top             =   240
             Width           =   1215
@@ -146,12 +187,12 @@ Begin VB.Form Form1
          Style           =   2  'Dropdown List
          TabIndex        =   34
          Top             =   240
-         Width           =   3375
+         Width           =   2415
       End
       Begin VB.Label LabelPrintStatus 
          Caption         =   "Nothing"
          Height          =   375
-         Left            =   2400
+         Left            =   2040
          TabIndex        =   44
          Top             =   2040
          Width           =   1575
@@ -159,7 +200,7 @@ Begin VB.Form Form1
       Begin VB.Label Label4 
          Caption         =   "Print Status"
          Height          =   255
-         Left            =   2400
+         Left            =   2040
          TabIndex        =   43
          Top             =   1680
          Width           =   1335
@@ -286,7 +327,7 @@ Begin VB.Form Form1
    Begin VB.Frame Frame3 
       Caption         =   "Go to Page"
       Height          =   975
-      Left            =   5520
+      Left            =   6600
       TabIndex        =   15
       Top             =   9000
       Width           =   4095
@@ -309,24 +350,24 @@ Begin VB.Form Form1
    Begin VB.Frame Frame2 
       Caption         =   "Total Page"
       Height          =   1095
-      Left            =   240
+      Left            =   3720
       TabIndex        =   13
-      Top             =   7800
-      Width           =   2415
+      Top             =   7440
+      Width           =   1695
       Begin VB.TextBox totalpage 
          Height          =   405
          Left            =   360
          TabIndex        =   14
          Top             =   360
-         Width           =   1695
+         Width           =   975
       End
    End
    Begin VB.Frame Frame1 
       Caption         =   "Search Text"
       Height          =   2175
-      Left            =   2760
+      Left            =   3840
       TabIndex        =   8
-      Top             =   7800
+      Top             =   5160
       Width           =   2655
       Begin VB.CheckBox chkhighlightallmatch 
          Caption         =   "Highlight All Matched Text"
@@ -366,7 +407,7 @@ Begin VB.Form Form1
          Left            =   120
          TabIndex        =   9
          Top             =   600
-         Width           =   2175
+         Width           =   1575
       End
       Begin VB.Label lblsearchtextmsg 
          Caption         =   "Found Text at Page 1"
@@ -435,14 +476,30 @@ Begin VB.Form Form1
    End
    Begin PDFViewerLib.PDFViewer PDFViewer1 
       Height          =   8775
-      Left            =   5520
+      Left            =   6600
       TabIndex        =   0
-      Top             =   120
-      Width           =   11175
+      Top             =   240
+      Width           =   9375
       _Version        =   65536
-      _ExtentX        =   19711
+      _ExtentX        =   16536
       _ExtentY        =   15478
       _StockProps     =   0
+   End
+   Begin VB.Label Label12 
+      Caption         =   "double click middle mouse button to print the PDF"
+      Height          =   255
+      Left            =   10800
+      TabIndex        =   65
+      Top             =   9120
+      Width           =   5055
+   End
+   Begin VB.Label lblcurrentpage 
+      Caption         =   "Current Page Number: 1"
+      Height          =   375
+      Left            =   3840
+      TabIndex        =   64
+      Top             =   8640
+      Width           =   2415
    End
    Begin VB.Label Label10 
       Caption         =   "1.0 = 100%"
@@ -501,6 +558,7 @@ Attribute VB_Exposed = False
 Private Sub backgroudcolor_Click()
 Me.CommonDialog1.ShowColor
 Me.PDFViewer1.backgroudcolor = CommonDialog1.Color
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub chkenablepanning_Click()
@@ -511,6 +569,7 @@ Else
     PDFViewer1.EnablePanning = False
 End If
 
+Me.PDFViewer1.SetControlFocus
 
 End Sub
 
@@ -534,21 +593,29 @@ Else
     txtsavebysizepageno.Enabled = True
     
 End If
+Me.PDFViewer1.SetControlFocus
 
+
+End Sub
+
+Private Sub chkshowpagesetup_Click()
+Me.PDFViewer1.SetControlFocus
 
 End Sub
 
 Private Sub cmdfitwindow_Click()
 Me.PDFViewer1.FitWindow
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub Command1_Click()
 Me.PDFViewer1.FitWidth
-
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub Command2_Click()
 PDFViewer1.FitHeight
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub Command3_Click()
@@ -566,7 +633,7 @@ Private Sub Command3_Click()
 
         PDFViewer1.PrinterSetPageRange txtpagefrom.Text, Me.txtpageto.Text
         PDFViewer1.PDFPrint
-
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub Command4_Click()
@@ -590,11 +657,21 @@ Else
 
 End If
 
-
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub Command5_Click()
 PDFViewer1.Zoom = txtcustomzoom.Text
+Me.PDFViewer1.SetControlFocus
+End Sub
+
+Private Sub RefreshPageNumber()
+lblcurrentpage.Caption = "Current Page Number:" + Str(PDFViewer1.GetCurrentPage)
+End Sub
+
+Private Sub down_Click()
+Me.PDFViewer1.SetControlFocus
+
 End Sub
 
 Private Sub Form_Load()
@@ -612,6 +689,7 @@ End Sub
 
 Private Sub go_Click()
 Me.PDFViewer1.GoToPage Me.pagetogo.Text
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub nextpage_Click()
@@ -619,6 +697,7 @@ Me.PDFViewer1.GoToNextPage
 End Sub
 
 Private Sub open_Click()
+Dim iResult As Integer
 Me.CommonDialog1.Filter = "PDF Files (*.pdf)|*.pdf|All Files(*.*)|*.*"
 Me.CommonDialog1.ShowOpen
 
@@ -626,7 +705,19 @@ If txtpassword.Text <> "" Then
         Me.PDFViewer1.Password = txtpassword.Text
 End If
 
-Me.PDFViewer1.LoadPDFFile CommonDialog1.FileName
+iResult = Me.PDFViewer1.LoadPDFFile(CommonDialog1.FileName)
+
+If iResult = -2 Then
+    MsgBox "Password is not correct"
+    Exit Sub
+End If
+
+If iResult = -1 Then
+    MsgBox "Load PDF Failed"
+    Exit Sub
+End If
+
+
 
 If PDFViewer1.IsEncrypted And txtpassword.Text = "" Then
     MsgBox "PDF file is protected, please input password"
@@ -634,36 +725,106 @@ End If
 
 Me.totalpage.Text = PDFViewer1.totalpage
 Me.txtpageto.Text = PDFViewer1.PrinterGetPageCount
- 
+Me.PDFViewer1.SetControlFocus
+End Sub
+
+Private Sub OptionChangePage1_Click()
+Me.PDFViewer1.SetControlFocus
+End Sub
+
+Private Sub OptionChangePage2_Click()
+Me.PDFViewer1.SetControlFocus
+End Sub
+
+Private Sub OptionChangePage3_Click()
+Me.PDFViewer1.SetControlFocus
+End Sub
+
+Private Sub OptionLandscape_Click()
+Me.PDFViewer1.SetControlFocus
+
+End Sub
+
+Private Sub OptionPortrait_Click()
+Me.PDFViewer1.SetControlFocus
+
 End Sub
 
 Private Sub OptionRotate0_Click()
 Me.PDFViewer1.RotateAngle = 0
-
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub OptionRotate180_Click()
 Me.PDFViewer1.RotateAngle = 180
-
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub OptionRotate270_Click()
 Me.PDFViewer1.RotateAngle = 270
-
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub OptionRotate45_Click()
 Me.PDFViewer1.RotateAngle = 45
-
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub OptionRotate90_Click()
 Me.PDFViewer1.RotateAngle = 90
-
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub originalsize_Click()
 Me.PDFViewer1.ShowOriginalSize
+Me.PDFViewer1.SetControlFocus
+End Sub
+
+Private Sub ChangePage(ByVal iDelta As Integer)
+
+If (iDelta > 0) Then 'wheel up
+            PDFViewer1.GoToPrevPage
+
+Else
+            PDFViewer1.GoToNextPage
+End If
+
+
+End Sub
+
+Private Sub PDFViewer1_MMouseButtonDblClk()
+print_Click
+End Sub
+
+Private Sub PDFViewer1_OnMouseWheel(ByVal bControlDown As Boolean, ByVal bLButtonDown As Boolean, ByVal bMButtonDown As Boolean, ByVal bRButtonDown As Boolean, ByVal bShitfDown As Boolean, ByVal iDelta As Integer, ByVal iX As Integer, ByVal iY As Integer)
+If OptionChangePage1.Value = True Then
+
+            ChangePage iDelta
+            
+ End If
+ 
+
+ If OptionChangePage2.Value = True Then
+
+            If bControlDown Then
+
+                ChangePage iDelta
+               
+
+            End If
+
+ End If
+    
+ If OptionChangePage3.Value = True Then
+
+            If bRButtonDown Then
+
+                ChangePage iDelta
+                
+            End If
+  End If
+  
+  RefreshPageNumber
 End Sub
 
 Private Sub PDFViewer1_OnPrint(ByVal iPage As Integer, ByVal iTotalPage As Integer, ByVal bIsFinish As Boolean)
@@ -684,7 +845,7 @@ Private Sub print_Click()
 
  Me.PDFViewer1.PrinterShowPrintDlg (Me.hWnd)
  Me.PDFViewer1.PDFPrint
-        
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 
@@ -697,7 +858,7 @@ Private Sub savebitmaps_Click()
         Me.PDFViewer1.savebitmaps strSelPath
    End If
    
-  
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub search_Click()
@@ -718,6 +879,8 @@ End If
         Else
             lblsearchtextmsg.Caption = "Found text at page " + Trim(Str(iPage))
         End If
+        
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub searchtext_Change()
@@ -733,12 +896,20 @@ iPage = Me.PDFViewer1.search(searchtext.Text, False)
             lblsearchtextmsg.Caption = "Found text at page " + Trim(Str(iPage))
         End If
         
+
+End Sub
+
+Private Sub up_Click()
+Me.PDFViewer1.SetControlFocus
+
 End Sub
 
 Private Sub zoomin_Click()
 Me.PDFViewer1.PDFZoomIn
+Me.PDFViewer1.SetControlFocus
 End Sub
 
 Private Sub zoomout_Click()
 Me.PDFViewer1.PDFZoomOut
+Me.PDFViewer1.SetControlFocus
 End Sub
