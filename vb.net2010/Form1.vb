@@ -1,7 +1,7 @@
 ﻿Public Class Form1
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-
+        Dim iResult As Integer
         OpenFileDialog1.Filter = "PDF (*.pdf)|*.pdf"
 
         AxPDFViewer1.EnablePanning = chkpanning.Checked
@@ -17,8 +17,15 @@
             End If
 
 
-            If (Me.AxPDFViewer1.LoadPDFFile(Me.OpenFileDialog1.FileName) < 0) Then
+            iResult = Me.AxPDFViewer1.LoadPDFFile(Me.OpenFileDialog1.FileName)
+            If iResult = -1 Then
                 MessageBox.Show("Load Failed")
+                Exit Sub
+            End If
+
+            If iResult = -2 Then
+                MessageBox.Show("Password is not correct")
+                Exit Sub
             End If
 
             If AxPDFViewer1.IsEncrypted And TextBoxPassword.Text = "" Then
@@ -28,20 +35,25 @@
             Me.TextBox3.Text = Me.AxPDFViewer1.TotalPage
 
             Me.txtprintto.Text = Me.AxPDFViewer1.PrinterGetPageCount
+            RefreshPageNumber()
         End If
 
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Me.AxPDFViewer1.GoToPrevPage()
+        RefreshPageNumber()
     End Sub
 
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
         Me.AxPDFViewer1.GoToNextPage()
+        RefreshPageNumber()
     End Sub
 
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         Me.AxPDFViewer1.GoToPage(TextBox1.Text)
+        RefreshPageNumber()
+
     End Sub
 
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
@@ -170,6 +182,11 @@
 
     End Sub
 
+    Private Sub RefreshPageNumber()
+        lblcurrentpage.Text = "Current Page:" + AxPDFViewer1.GetCurrentPage().ToString()
+    End Sub
+
+
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         For i = 0 To AxPDFViewer1.PrinterCount - 1
             cboprinter.Items.Add(AxPDFViewer1.PrinterName(i))
@@ -206,7 +223,7 @@
 
     Private Sub AxPDFViewer1_OnPrint(ByVal sender As System.Object, ByVal e As AxPDFViewerLib._DPDFViewerEvents_OnPrintEvent) Handles AxPDFViewer1.OnPrint
 
-       
+
         If e.bIsFinish Then
             lblprintstatus.Text = "Printing Finished"
 
@@ -255,7 +272,7 @@
 
     End Sub
 
-    Private Sub chkpanning_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chkpanning.CheckedChanged
+    Private Sub chkpanning_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkpanning.CheckedChanged
 
         If AxPDFViewer1.Handle() <> 0 Then
 
@@ -269,7 +286,7 @@
 
     End Sub
 
-    Private Sub Button16_Click(sender As System.Object, e As System.EventArgs) Handles Button16.Click
+    Private Sub Button16_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button16.Click
         AxPDFViewer1.Zoom = txtcustomzoom.Text
     End Sub
 
@@ -302,5 +319,51 @@
             AxPDFViewer1.HighlightAllMatchedText = False
 
         End If
+    End Sub
+
+    Private Sub ChangePage(ByVal iDelta As Integer)
+        If (iDelta > 0) Then 'wheel up
+
+            AxPDFViewer1.GoToPrevPage()
+
+
+        Else
+
+            AxPDFViewer1.GoToNextPage()
+
+        End If
+
+    End Sub
+
+    Private Sub AxPDFViewer1_OnMouseWheel(ByVal sender As System.Object, ByVal e As AxPDFViewerLib._DPDFViewerEvents_OnMouseWheelEvent) Handles AxPDFViewer1.OnMouseWheel
+        If radioChangePage1.Checked Then
+
+            ChangePage(e.iDelta)
+
+        ElseIf radioChangePage2.Checked Then
+            If (e.bControlDown) Then
+
+                ChangePage(e.iDelta)
+            End If
+
+
+        ElseIf (radioChangePage3.Checked) Then
+            If (e.bRButtonDown) Then
+
+                ChangePage(e.iDelta)
+            End If
+        End If
+
+
+
+
+        RefreshPageNumber()
+
+
+
+    End Sub
+
+    Private Sub AxPDFViewer1_MMouseButtonDblClk(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AxPDFViewer1.MMouseButtonDblClk
+        Button12.PerformClick()
     End Sub
 End Class
