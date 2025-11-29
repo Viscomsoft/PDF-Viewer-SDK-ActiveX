@@ -97,6 +97,13 @@ namespace testPDF
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             int iPage = 0;
+
+            if (chkcopytexttoclipboard.Checked)
+                axPDFViewer1.SearchedTextToClipboard = true;
+            else
+                axPDFViewer1.SearchedTextToClipboard = false;
+          
+
             iPage = this.axPDFViewer1.Search(this.textBox1.Text, false);
 
          
@@ -111,6 +118,12 @@ namespace testPDF
         private void button6_Click(object sender, EventArgs e)
         {
             int iPage=0;
+          
+            if (chkcopytexttoclipboard.Checked)
+                axPDFViewer1.SearchedTextToClipboard = true;
+            else
+                axPDFViewer1.SearchedTextToClipboard = false;
+          
             if (this.radioButton1.Checked == true)
             {
                 iPage=this.axPDFViewer1.SearchPrevText();
@@ -198,6 +211,12 @@ namespace testPDF
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            cboencryptmode.Items.Add("RC4 40 bit");
+            cboencryptmode.Items.Add("RC4 128 bit");
+            cboencryptmode.Items.Add("AES 128 bit");
+            cboencryptmode.Items.Add("AES 256 bit");
+            cboencryptmode.SelectedIndex = 0;
+
               for(int i = 0; i <axPDFViewer1.PrinterCount();i++)
               {
                 cboprinter.Items.Add(axPDFViewer1.PrinterName((short)i));
@@ -386,6 +405,89 @@ namespace testPDF
         private void axPDFViewer1_MMouseButtonDblClk(object sender, EventArgs e)
         {
             button5.PerformClick();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "PDF file (*.pdf)|*.pdf||";
+            saveFileDialog1.DefaultExt = "pdf";
+
+            if (chkusefastview.Checked) 
+                axPDFViewer1.FastWebAccess = true;
+            else
+                axPDFViewer1.FastWebAccess = false;
+             
+
+
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                bool bResult = axPDFViewer1.SavePDF(saveFileDialog1.FileName);
+
+                if (bResult)
+                    MessageBox.Show("Save " + saveFileDialog1.FileName + " Completed");
+            }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "PDF file (*.pdf)|*.pdf||";
+            saveFileDialog1.DefaultExt = "pdf";
+
+            if (chkusefastview.Checked)
+                axPDFViewer1.FastWebAccess = true;
+            else
+                axPDFViewer1.FastWebAccess = false;
+
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                bool bResult = axPDFViewer1.SavePDFWithPassword(saveFileDialog1.FileName, cboencryptmode.SelectedIndex, txtsavepassword.Text, txtsavepassword.Text);
+
+                if (bResult)
+                    MessageBox.Show("Save " + saveFileDialog1.FileName + " Completed");
+            }
+            
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "PDF file (*.pdf)|*.pdf||";
+            saveFileDialog1.DefaultExt = "pdf";
+
+
+            if (chkusefastview.Checked)
+                axPDFViewer1.FastWebAccess = true;
+            else
+                axPDFViewer1.FastWebAccess = false;
+
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                bool bResult = axPDFViewer1.SavePDFWithDeletePage(saveFileDialog1.FileName, Int32.Parse(txtdelpagefrom.Text), Int32.Parse(txtdelpageto.Text));
+
+                if (bResult)
+                    MessageBox.Show("Save " + saveFileDialog1.FileName + " Completed");
+            }
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+
+            string str1 = "Title: " + axPDFViewer1.PDFGetTitle +"\r\n";
+            str1 = str1 + "Author: " + axPDFViewer1.PDFGetAuthor + "\r\n";
+            str1 = str1 + "Keywords: " + axPDFViewer1.PDFGetKeyword + "\r\n";
+            str1 = str1 + "Subject: " + axPDFViewer1.PDFGetSubject + "\r\n";
+            str1 = str1 + "Producer: " + axPDFViewer1.PDFGetProducer + "\r\n";
+            str1 = str1 + "Creation Date: " + axPDFViewer1.PDFGetCreationDate + "\r\n";
+            str1 = str1 + "Modify Date: " + axPDFViewer1.PDFGetModifyDate + "\r\n";
+            str1 = str1 + "Version No: " + axPDFViewer1.PDFGetVersionNo.ToString() + "\r\n";
+
+
+
+
+
+            MessageBox.Show(str1);
+
+
+
         }
     }
 }
