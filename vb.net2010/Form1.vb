@@ -59,6 +59,13 @@
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
         Dim iPage As Integer
         iPage = 0
+        If chkcopytexttoclipboard.Checked Then
+            AxPDFViewer1.SearchedTextToClipboard = True
+        Else
+            AxPDFViewer1.SearchedTextToClipboard = False
+        End If
+
+
         If (Me.RadioButton1.Checked = True) Then
             iPage = Me.AxPDFViewer1.SearchPrevText
             If (iPage < 0) Then
@@ -125,6 +132,12 @@
     Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
         Dim iPage As Integer = 0
 
+        If chkcopytexttoclipboard.Checked Then
+            AxPDFViewer1.SearchedTextToClipboard = True
+        Else
+            AxPDFViewer1.SearchedTextToClipboard = False
+        End If
+
         iPage = AxPDFViewer1.Search(TextBox2.Text, False)
 
         If iPage < 0 Then
@@ -188,6 +201,12 @@
 
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        cboencryptmode.Items.Add("RC4 40 bit")
+        cboencryptmode.Items.Add("RC4 128 bit")
+        cboencryptmode.Items.Add("AES 128 bit")
+        cboencryptmode.Items.Add("AES 256 bit")
+        cboencryptmode.SelectedIndex = 0
+
         For i = 0 To AxPDFViewer1.PrinterCount - 1
             cboprinter.Items.Add(AxPDFViewer1.PrinterName(i))
         Next
@@ -365,5 +384,90 @@
 
     Private Sub AxPDFViewer1_MMouseButtonDblClk(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AxPDFViewer1.MMouseButtonDblClk
         Button12.PerformClick()
+    End Sub
+
+    Private Sub Button19_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button19.Click
+        Dim bResult As Boolean
+        SaveFileDialog1.Filter = "PDF file (*.pdf)|*.pdf||"
+        SaveFileDialog1.DefaultExt = "pdf"
+
+        If chkusefastview.Checked Then
+            AxPDFViewer1.FastWebAccess = True
+        Else
+            AxPDFViewer1.FastWebAccess = False
+        End If
+
+
+
+        If SaveFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            bResult = AxPDFViewer1.SavePDF(SaveFileDialog1.FileName)
+
+            If bResult = True Then
+                MessageBox.Show("Save " + SaveFileDialog1.FileName + " Completed")
+            End If
+        End If
+
+    End Sub
+
+    Private Sub Button18_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button18.Click
+        Dim bResult As Boolean
+        SaveFileDialog1.Filter = "PDF file (*.pdf)|*.pdf||"
+        SaveFileDialog1.DefaultExt = "pdf"
+
+
+        If chkusefastview.Checked Then
+            AxPDFViewer1.FastWebAccess = True
+        Else
+            AxPDFViewer1.FastWebAccess = False
+        End If
+
+
+
+        If SaveFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            bResult = AxPDFViewer1.SavePDFWithPassword(SaveFileDialog1.FileName, cboencryptmode.SelectedIndex, txtsavepassword.Text, txtsavepassword.Text)
+
+            If bResult = True Then
+                MessageBox.Show("Save " + SaveFileDialog1.FileName + " Completed")
+            End If
+        End If
+
+    End Sub
+
+    Private Sub button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles button17.Click
+        Dim bResult As Boolean
+        SaveFileDialog1.Filter = "PDF file (*.pdf)|*.pdf||"
+        SaveFileDialog1.DefaultExt = "pdf"
+
+
+        If chkusefastview.Checked Then
+            AxPDFViewer1.FastWebAccess = True
+        Else
+            AxPDFViewer1.FastWebAccess = False
+        End If
+
+
+
+        If SaveFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            bResult = AxPDFViewer1.SavePDFWithDeletePage(SaveFileDialog1.FileName, txtdelpagefrom.Text, txtdelpageto.Text)
+
+            If bResult = True Then
+                MessageBox.Show("Save " + SaveFileDialog1.FileName + " Completed")
+            End If
+        End If
+    End Sub
+
+    Private Sub Button20_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button20.Click
+        Dim str1 As String
+        str1 = "Title: " + AxPDFViewer1.PDFGetTitle + Chr(13) + Chr(10)
+        str1 = str1 + "Author: " + AxPDFViewer1.PDFGetAuthor + Chr(13) + Chr(10)
+        str1 = str1 + "Keywords: " + AxPDFViewer1.PDFGetKeyword + Chr(13) + Chr(10)
+        str1 = str1 + "Subject: " + AxPDFViewer1.PDFGetSubject + Chr(13) + Chr(10)
+        str1 = str1 + "Producer: " + AxPDFViewer1.PDFGetProducer + Chr(13) + Chr(10)
+        str1 = str1 + "Creation Date: " + AxPDFViewer1.PDFGetCreationDate + Chr(13) + Chr(10)
+        str1 = str1 + "Modify Date: " + AxPDFViewer1.PDFGetModifyDate + Chr(13) + Chr(10)
+        str1 = str1 + "Version No: " + AxPDFViewer1.PDFGetVersionNo.ToString() + Chr(13) + Chr(10)
+
+        MessageBox.Show(str1)
+
     End Sub
 End Class
