@@ -1,0 +1,5 @@
+If you installed PDF Viewer Viewer ActiveX to C:\Program Files (x86)\PDF Viewer SDK ActiveX Control folder or
+C:\Program Files\PDF Viewer SDK ActiveX Control folder.  When you open our VFP sample. you will modify the form, you will see form1.sct i missing.
+Because VFP cannot open the project from C:\Program Files (x86) or C:\Program Files folder.
+You copy our sample to another folder e.g. C:\TEMP folder. Then open our projects. It solved.
+
