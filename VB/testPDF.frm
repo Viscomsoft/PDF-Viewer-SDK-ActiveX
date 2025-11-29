@@ -3,20 +3,101 @@ Object = "{49BEA983-661F-4F32-8793-E638A91989AF}#1.0#0"; "PDFViewer.ocx"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
 Begin VB.Form Form1 
    Caption         =   "PDF Viewer Control"
-   ClientHeight    =   6615
+   ClientHeight    =   11010
    ClientLeft      =   165
    ClientTop       =   555
-   ClientWidth     =   14280
+   ClientWidth     =   15240
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6615
-   ScaleWidth      =   14280
+   ScaleHeight     =   11010
+   ScaleWidth      =   15240
    StartUpPosition =   3  'Windows Default
+   Begin VB.CommandButton Command9 
+      Caption         =   "Properties"
+      Height          =   255
+      Left            =   240
+      TabIndex        =   79
+      Top             =   600
+      Width           =   2535
+   End
+   Begin VB.CheckBox chkusefastview 
+      Caption         =   "Use Fast Web View"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   6.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   4920
+      TabIndex        =   77
+      Top             =   120
+      Width           =   1575
+   End
+   Begin VB.TextBox txtdelpageto 
+      Height          =   285
+      Left            =   6000
+      TabIndex        =   76
+      Text            =   "2"
+      Top             =   2640
+      Width           =   495
+   End
+   Begin VB.TextBox txtdelpagestart 
+      Height          =   285
+      Left            =   4200
+      TabIndex        =   74
+      Text            =   "1"
+      Top             =   2640
+      Width           =   495
+   End
+   Begin VB.CommandButton Command8 
+      Caption         =   "Save PDF with Delete Page"
+      Height          =   375
+      Left            =   3000
+      TabIndex        =   72
+      Top             =   2160
+      Width           =   2175
+   End
+   Begin VB.ComboBox cboencryptmode 
+      Height          =   315
+      Left            =   4320
+      Style           =   2  'Dropdown List
+      TabIndex        =   71
+      Top             =   1680
+      Width           =   975
+   End
+   Begin VB.TextBox txtsavepassword 
+      Height          =   285
+      Left            =   3840
+      TabIndex        =   68
+      Text            =   "12345"
+      Top             =   1320
+      Width           =   1095
+   End
+   Begin VB.CommandButton Command7 
+      Caption         =   "Save PDF with Password"
+      Height          =   375
+      Left            =   3000
+      TabIndex        =   67
+      Top             =   720
+      Width           =   2175
+   End
+   Begin VB.CommandButton Command6 
+      Caption         =   "Save PDF"
+      Height          =   375
+      Left            =   3000
+      TabIndex        =   66
+      Top             =   120
+      Width           =   1815
+   End
    Begin VB.Frame Frame9 
       Caption         =   "change pages by scrolling mouse wheel"
       Height          =   2055
       Left            =   120
       TabIndex        =   59
-      Top             =   7920
+      Top             =   8280
       Width           =   3615
       Begin VB.OptionButton OptionChangePage1 
          Caption         =   "Scrolling mouse wheel"
@@ -54,10 +135,10 @@ Begin VB.Form Form1
    End
    Begin VB.TextBox txtcustomzoom 
       Height          =   285
-      Left            =   4320
+      Left            =   4080
       TabIndex        =   55
       Text            =   "1.0"
-      Top             =   3480
+      Top             =   4560
       Width           =   615
    End
    Begin VB.CommandButton Command5 
@@ -65,15 +146,15 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   2880
       TabIndex        =   54
-      Top             =   3480
+      Top             =   4440
       Width           =   1095
    End
    Begin VB.CheckBox chkenablepanning 
       Caption         =   "Enable Panning"
       Height          =   375
-      Left            =   3000
+      Left            =   6600
       TabIndex        =   53
-      Top             =   240
+      Top             =   9120
       Value           =   1  'Checked
       Width           =   2055
    End
@@ -82,7 +163,7 @@ Begin VB.Form Form1
       Left            =   3600
       TabIndex        =   52
       Text            =   "2.0"
-      Top             =   4680
+      Top             =   5280
       Width           =   615
    End
    Begin VB.TextBox txtsavebysizepageno 
@@ -91,7 +172,7 @@ Begin VB.Form Form1
       Left            =   4560
       TabIndex        =   50
       Text            =   "1"
-      Top             =   4680
+      Top             =   5280
       Width           =   615
    End
    Begin VB.CheckBox chksavebysizeallpage 
@@ -99,7 +180,7 @@ Begin VB.Form Form1
       Height          =   255
       Left            =   3000
       TabIndex        =   48
-      Top             =   4320
+      Top             =   4920
       Value           =   1  'Checked
       Width           =   1095
    End
@@ -108,22 +189,22 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   240
       TabIndex        =   47
-      Top             =   4080
+      Top             =   5160
       Width           =   2535
    End
    Begin VB.CommandButton cmdfitwindow 
       Caption         =   "Fit Window"
       Height          =   375
-      Left            =   2880
+      Left            =   4560
       TabIndex        =   46
-      Top             =   2640
-      Width           =   2535
+      Top             =   3960
+      Width           =   1575
    End
    Begin VB.Frame Frame5 
       Height          =   2655
-      Left            =   240
+      Left            =   120
       TabIndex        =   32
-      Top             =   5040
+      Top             =   5640
       Width           =   3495
       Begin VB.CommandButton Command3 
          Caption         =   "Print (No UI)"
@@ -235,7 +316,7 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   240
       TabIndex        =   31
-      Top             =   3120
+      Top             =   3480
       Width           =   2535
    End
    Begin VB.CommandButton Command1 
@@ -243,43 +324,52 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   240
       TabIndex        =   30
-      Top             =   2640
+      Top             =   3000
       Width           =   2535
    End
    Begin VB.TextBox txtpassword 
       Height          =   285
       Left            =   1200
       TabIndex        =   27
-      Top             =   840
+      Top             =   1200
       Width           =   855
    End
    Begin VB.Frame Frame4 
       Caption         =   "Rotate"
-      Height          =   1095
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   6.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   735
       Left            =   2880
       TabIndex        =   20
-      Top             =   840
-      Width           =   2295
+      Top             =   3120
+      Width           =   3495
       Begin VB.OptionButton OptionRotate0 
          Caption         =   "0"
          Height          =   255
-         Left            =   960
+         Left            =   2760
          TabIndex        =   25
-         Top             =   720
+         Top             =   360
          Width           =   615
       End
       Begin VB.OptionButton OptionRotate45 
          Caption         =   "45"
          Height          =   195
-         Left            =   240
+         Left            =   2160
          TabIndex        =   24
-         Top             =   720
+         Top             =   360
          Width           =   615
       End
       Begin VB.OptionButton OptionRotate270 
          Caption         =   "270"
          Height          =   255
-         Left            =   1680
+         Left            =   1440
          TabIndex        =   23
          Top             =   360
          Width           =   735
@@ -287,7 +377,7 @@ Begin VB.Form Form1
       Begin VB.OptionButton OptionRotate180 
          Caption         =   "180"
          Height          =   255
-         Left            =   960
+         Left            =   720
          TabIndex        =   22
          Top             =   360
          Width           =   615
@@ -295,7 +385,7 @@ Begin VB.Form Form1
       Begin VB.OptionButton OptionRotate90 
          Caption         =   "90"
          Height          =   255
-         Left            =   240
+         Left            =   120
          TabIndex        =   21
          Top             =   360
          Width           =   495
@@ -313,7 +403,7 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   8880
       TabIndex        =   19
-      Top             =   10320
+      Top             =   10680
       Width           =   1815
    End
    Begin VB.CommandButton prevpage 
@@ -321,7 +411,7 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   6600
       TabIndex        =   18
-      Top             =   10320
+      Top             =   10680
       Width           =   1815
    End
    Begin VB.Frame Frame3 
@@ -329,7 +419,7 @@ Begin VB.Form Form1
       Height          =   975
       Left            =   6600
       TabIndex        =   15
-      Top             =   9000
+      Top             =   9480
       Width           =   4095
       Begin VB.CommandButton go 
          Caption         =   "Go"
@@ -343,6 +433,7 @@ Begin VB.Form Form1
          Height          =   375
          Left            =   360
          TabIndex        =   16
+         Text            =   "1"
          Top             =   360
          Width           =   1695
       End
@@ -350,9 +441,9 @@ Begin VB.Form Form1
    Begin VB.Frame Frame2 
       Caption         =   "Total Page"
       Height          =   1095
-      Left            =   3720
+      Left            =   3840
       TabIndex        =   13
-      Top             =   7440
+      Top             =   8400
       Width           =   1695
       Begin VB.TextBox totalpage 
          Height          =   405
@@ -364,13 +455,39 @@ Begin VB.Form Form1
    End
    Begin VB.Frame Frame1 
       Caption         =   "Search Text"
-      Height          =   2175
+      Height          =   2415
       Left            =   3840
       TabIndex        =   8
-      Top             =   5160
+      Top             =   5880
       Width           =   2655
+      Begin VB.CheckBox chkcopytexttoclipboard 
+         Caption         =   "Copy searched text to clipboard"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   6.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   240
+         TabIndex        =   78
+         Top             =   600
+         Width           =   2415
+      End
       Begin VB.CheckBox chkhighlightallmatch 
          Caption         =   "Highlight All Matched Text"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   6.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   240
          TabIndex        =   57
@@ -382,7 +499,7 @@ Begin VB.Form Form1
          Height          =   375
          Left            =   240
          TabIndex        =   12
-         Top             =   1320
+         Top             =   1560
          Width           =   1935
       End
       Begin VB.OptionButton down 
@@ -390,7 +507,7 @@ Begin VB.Form Form1
          Height          =   375
          Left            =   1200
          TabIndex        =   11
-         Top             =   960
+         Top             =   1200
          Value           =   -1  'True
          Width           =   855
       End
@@ -399,14 +516,14 @@ Begin VB.Form Form1
          Height          =   375
          Left            =   240
          TabIndex        =   10
-         Top             =   960
+         Top             =   1200
          Width           =   855
       End
       Begin VB.TextBox searchtext 
          Height          =   375
          Left            =   120
          TabIndex        =   9
-         Top             =   600
+         Top             =   840
          Width           =   1575
       End
       Begin VB.Label lblsearchtextmsg 
@@ -414,7 +531,7 @@ Begin VB.Form Form1
          Height          =   255
          Left            =   240
          TabIndex        =   58
-         Top             =   1800
+         Top             =   2040
          Width           =   2295
       End
    End
@@ -431,7 +548,7 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   240
       TabIndex        =   6
-      Top             =   3600
+      Top             =   3960
       Width           =   2535
    End
    Begin VB.CommandButton originalsize 
@@ -439,15 +556,15 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   2880
       TabIndex        =   5
-      Top             =   2160
-      Width           =   2535
+      Top             =   3960
+      Width           =   1575
    End
    Begin VB.CommandButton zoomout 
       Caption         =   "Zoom Out"
       Height          =   375
       Left            =   240
       TabIndex        =   4
-      Top             =   2160
+      Top             =   2520
       Width           =   2535
    End
    Begin VB.CommandButton zoomin 
@@ -455,7 +572,7 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   240
       TabIndex        =   3
-      Top             =   1680
+      Top             =   2040
       Width           =   2535
    End
    Begin VB.CommandButton backgroudcolor 
@@ -463,7 +580,7 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   240
       TabIndex        =   2
-      Top             =   1200
+      Top             =   1560
       Width           =   2535
    End
    Begin VB.CommandButton open 
@@ -485,6 +602,47 @@ Begin VB.Form Form1
       _ExtentY        =   15478
       _StockProps     =   0
    End
+   Begin VB.Label Label16 
+      Caption         =   "Delete Page to"
+      Height          =   255
+      Left            =   4800
+      TabIndex        =   75
+      Top             =   2640
+      Width           =   1215
+   End
+   Begin VB.Label Label15 
+      Caption         =   "Delete Page From"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   6.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   3000
+      TabIndex        =   73
+      Top             =   2640
+      Width           =   1215
+   End
+   Begin VB.Label Label14 
+      Caption         =   "Encrypt Mode"
+      Height          =   375
+      Left            =   3000
+      TabIndex        =   70
+      Top             =   1680
+      Width           =   1095
+   End
+   Begin VB.Label Label13 
+      Caption         =   "Paasword"
+      Height          =   255
+      Left            =   3000
+      TabIndex        =   69
+      Top             =   1320
+      Width           =   855
+   End
    Begin VB.Label Label12 
       Caption         =   "double click middle mouse button to print the PDF"
       Height          =   255
@@ -498,15 +656,15 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   3840
       TabIndex        =   64
-      Top             =   8640
+      Top             =   9600
       Width           =   2415
    End
    Begin VB.Label Label10 
       Caption         =   "1.0 = 100%"
       Height          =   375
-      Left            =   4320
+      Left            =   4800
       TabIndex        =   56
-      Top             =   3120
+      Top             =   4560
       Width           =   855
    End
    Begin VB.Label Label9 
@@ -514,7 +672,7 @@ Begin VB.Form Form1
       Height          =   375
       Left            =   3000
       TabIndex        =   51
-      Top             =   4680
+      Top             =   5280
       Width           =   495
    End
    Begin VB.Label Label8 
@@ -522,7 +680,7 @@ Begin VB.Form Form1
       Height          =   255
       Left            =   4560
       TabIndex        =   49
-      Top             =   4320
+      Top             =   4920
       Width           =   495
    End
    Begin VB.Label Label3 
@@ -530,7 +688,7 @@ Begin VB.Form Form1
       Height          =   255
       Left            =   240
       TabIndex        =   29
-      Top             =   600
+      Top             =   960
       Width           =   2655
    End
    Begin VB.Label Label2 
@@ -538,7 +696,7 @@ Begin VB.Form Form1
       Height          =   15
       Left            =   360
       TabIndex        =   28
-      Top             =   720
+      Top             =   1080
       Width           =   1695
    End
    Begin VB.Label Label1 
@@ -546,7 +704,7 @@ Begin VB.Form Form1
       Height          =   255
       Left            =   240
       TabIndex        =   26
-      Top             =   840
+      Top             =   1200
       Width           =   735
    End
 End
@@ -669,6 +827,83 @@ Private Sub RefreshPageNumber()
 lblcurrentpage.Caption = "Current Page Number:" + Str(PDFViewer1.GetCurrentPage)
 End Sub
 
+Private Sub Command6_Click()
+ Dim bResult As Boolean
+ Me.CommonDialog1.Filter = "PDF File (*.pdf)|*.pdf"
+ Me.CommonDialog1.ShowSave
+ 
+ 
+ If chkusefastview.Value = 1 Then
+    PDFViewer1.FastWebAccess = True
+ Else
+    PDFViewer1.FastWebAccess = False
+ End If
+ 
+ 
+ bResult = PDFViewer1.SavePDF(CommonDialog1.FileName)
+ 
+ If bResult Then
+        MsgBox "Save PDF Completed"
+ End If
+ 
+    
+End Sub
+
+Private Sub Command7_Click()
+Dim bResult As Boolean
+ Me.CommonDialog1.Filter = "PDF File (*.pdf)|*.pdf"
+ Me.CommonDialog1.ShowSave
+ 
+  
+ If chkusefastview.Value = 1 Then
+    PDFViewer1.FastWebAccess = True
+ Else
+    PDFViewer1.FastWebAccess = False
+ End If
+ 
+ bResult = PDFViewer1.SavePDFWithPassword(CommonDialog1.FileName, cboencryptmode.ListIndex, txtsavepassword.Text, txtsavepassword.Text)
+ 
+ If bResult Then
+        MsgBox "Save PDF Completed"
+ End If
+ 
+End Sub
+
+Private Sub Command8_Click()
+Dim bResult As Boolean
+ Me.CommonDialog1.Filter = "PDF File (*.pdf)|*.pdf"
+ Me.CommonDialog1.ShowSave
+ 
+ 
+ 
+ If chkusefastview.Value = 1 Then
+    PDFViewer1.FastWebAccess = True
+ Else
+    PDFViewer1.FastWebAccess = False
+ End If
+ 
+ bResult = PDFViewer1.SavePDFWithDeletePage(CommonDialog1.FileName, txtdelpagestart.Text, txtdelpageto.Text)
+ 
+ If bResult Then
+        MsgBox "Save PDF Completed"
+ End If
+ 
+End Sub
+
+Private Sub Command9_Click()
+Dim str1 As String
+        str1 = "Title: " + PDFViewer1.PDFGetTitle + Chr(13) + Chr(10)
+        str1 = str1 + "Author: " + PDFViewer1.PDFGetAuthor + Chr(13) + Chr(10)
+        str1 = str1 + "Keywords: " + PDFViewer1.PDFGetKeyword + Chr(13) + Chr(10)
+        str1 = str1 + "Subject: " + PDFViewer1.PDFGetSubject + Chr(13) + Chr(10)
+        str1 = str1 + "Producer: " + PDFViewer1.PDFGetProducer + Chr(13) + Chr(10)
+        str1 = str1 + "Creation Date: " + PDFViewer1.PDFGetCreationDate + Chr(13) + Chr(10)
+        str1 = str1 + "Modify Date: " + PDFViewer1.PDFGetModifyDate + Chr(13) + Chr(10)
+        str1 = str1 + "Version No: " + Str(PDFViewer1.PDFGetVersionNo) + Chr(13) + Chr(10)
+
+MsgBox str1
+End Sub
+
 Private Sub down_Click()
 Me.PDFViewer1.SetControlFocus
 
@@ -676,9 +911,16 @@ End Sub
 
 Private Sub Form_Load()
 
+
+   cboencryptmode.AddItem "RC4 40 bit"
+   cboencryptmode.AddItem "RC4 128 bit"
+   cboencryptmode.AddItem "AES 128 bit"
+   cboencryptmode.AddItem "AES 256 bit"
+   cboencryptmode.ListIndex = 0
+ 
  For i = 0 To PDFViewer1.PrinterCount - 1
-            cboprinter.AddItem (PDFViewer1.PrinterName(i))
-        Next
+     cboprinter.AddItem (PDFViewer1.PrinterName(i))
+ Next
 
         If cboprinter.ListCount > 0 Then
             cboprinter.ListIndex = 0
@@ -863,6 +1105,13 @@ End Sub
 
 Private Sub search_Click()
 Dim iPage As Integer
+
+If chkcopytexttoclipboard.Value = 1 Then
+    PDFViewer1.SearchedTextToClipboard = True
+Else
+    PDFViewer1.SearchedTextToClipboard = False
+End If
+
 If Me.up.Value = True Then
   iPage = Me.PDFViewer1.SearchPrevText
 End If
@@ -885,6 +1134,13 @@ End Sub
 
 Private Sub searchtext_Change()
 Dim iPage As Integer
+
+If chkcopytexttoclipboard.Value = 1 Then
+    PDFViewer1.SearchedTextToClipboard = True
+Else
+    PDFViewer1.SearchedTextToClipboard = False
+End If
+
 
 iPage = Me.PDFViewer1.search(searchtext.Text, False)
 
