@@ -1,5 +1,5 @@
 # PDF-Viewer-SDK-ActiveX
-It is PDF Viewer SDK, fast open PDF, support print a PDF, searching the text with C++ , C#, VB.Net , VB6, Delphi, Vfp, MS Access.
+It is PDF Viewer SDK, fast open PDF, TIFF, support print a PDF, TIFF , searching the text with C++ , C#, VB.Net , VB6, Delphi, Vfp, MS Access.
 
 
 <b>Download</b>
@@ -8,9 +8,9 @@ Install Viscomsoft PDF Viewer SDK from http://www.viscomsoft.com/products/pdfvie
 
 <b>Highlights</b>
 
-1. Support very fast open PDF. 
+1. Support very fast open PDF, TIFF. 
 
-2. Support go to specific page when open multipage PDF file.
+2. Support go to specific page when open multipage PDF, TIFF file.
 
 3. Support open Unicode (e.g. Spanish, German, French, Chinese, Korean, Japanese ) PDF File name and search Unicode text in pages.
  
@@ -22,7 +22,7 @@ Install Viscomsoft PDF Viewer SDK from http://www.viscomsoft.com/products/pdfvie
 
 7. Support searching the text on multipage PDF file. Support export the pages or specific page to bitmap files and scale the to specific size.
 
-8. Support Print a PDF with Print Dialog. Support Print a PDF, select Print, set Page Range, Page Orientation
+8. Support Print a PDF, TIF with Print Dialog. Support Print a PDF, TIF , select Print, set Page Range, Page Orientation
 programmatically.
 
 9. Support Get the default Printer Name.
